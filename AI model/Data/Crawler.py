@@ -9,7 +9,7 @@ from vnstock import *
 
 
 def crawl(company):
-    start = "2018-02-15" #Happy new year
+    start = "2000-02-15" #Happy new year
     end = today = dt.datetime.now().strftime("%Y-%m-%d") 
     df = vnstock.stock_historical_data(symbol = company, start_date = start, end_date = end)
     df.to_csv(f"Raw\{company}.csv",encoding = "utf-8")
