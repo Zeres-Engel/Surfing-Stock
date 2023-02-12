@@ -74,7 +74,6 @@ class MainWindow(QMainWindow):
                     title = "Info tab",
                     icon_path = Functions.set_svg_icon("icon_info.svg")
                 )
-
         #* Setting
         if btn.objectName() == "btn_settings" or btn.objectName() == "btn_close_left_column":
             #Check setting
@@ -97,19 +96,15 @@ class MainWindow(QMainWindow):
                     icon_path = Functions.set_svg_icon("icon_settings.svg")
                 )
         print(f"Button {btn.objectName()}, clicked!")
-
     #Debuger Button
     def btn_released(self):
         btn = SetupMainWindow.setup_btns(self)
         print(f"Button {btn.objectName()}, released!")
-
     #Resize event
     def resizeEvent(self, event):
         SetupMainWindow.resize_grips(self)
-
     #Mouse press event
     def mousePressEvent(self, event):
-        # SET DRAG POS WINDOW
         self.dragPos = event.globalPos()
 
 if __name__ == "__main__":
