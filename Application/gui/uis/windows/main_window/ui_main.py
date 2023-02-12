@@ -5,7 +5,6 @@ from gui.core.json_themes import Themes
 from gui.widgets import *
 from . setup_main_window import *
 from gui.uis.pages.ui_main_pages import Ui_MainPages
-from gui.uis.columns.ui_right_column import Ui_RightColumn
 from gui.widgets.py_credits_bar.py_credits import PyCredits
 class UI_MainWindow(object):
     def setup_ui(self, parent):
@@ -182,9 +181,6 @@ class UI_MainWindow(object):
             background-color: {self.themes["app_color"]["bg_two"]};}}''')
         #!ADD BG
         self.content_area_right_layout.addWidget(self.content_area_right_bg_frame)
-        # ADD RIGHT PAGES TO RIGHT COLUMN
-        self.right_column = Ui_RightColumn()
-        self.right_column.setupUi(self.content_area_right_bg_frame)
 
         #!ADD TO LAYOUTS
         self.content_area_layout.addWidget(self.content_area_left_frame)

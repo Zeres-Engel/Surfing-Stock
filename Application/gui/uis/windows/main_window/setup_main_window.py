@@ -1,68 +1,26 @@
-# ///////////////////////////////////////////////////////////////
-#
-# BY: WANDERSON M.PIMENTA
-# PROJECT MADE WITH: Qt Designer and PySide6
-# V: 1.0.0
-#
-# This project can be used freely for all uses, as long as they maintain the
-# respective credits only in the Python scripts, any information in the visual
-# interface (GUI) can be modified without any implication.
-#
-# There are limitations on Qt licenses if you want to use your products
-# commercially, I recommend reading them on the official website:
-# https://doc.qt.io/qtforpython/licenses.html
-#
-# ///////////////////////////////////////////////////////////////
-
-# IMPORT PACKAGES AND MODULES
-# ///////////////////////////////////////////////////////////////
 from gui.widgets.py_table_widget.py_table_widget import PyTableWidget
 from . functions_main_window import *
 import sys
 import os
-
-# IMPORT QT CORE
-# ///////////////////////////////////////////////////////////////
 from qt_core import *
-
-# IMPORT SETTINGS
-# ///////////////////////////////////////////////////////////////
 from gui.core.json_settings import Settings
-
-# IMPORT THEME COLORS
-# ///////////////////////////////////////////////////////////////
 from gui.core.json_themes import Themes
-
-# IMPORT PY ONE DARK WIDGETS
-# ///////////////////////////////////////////////////////////////
 from gui.widgets import *
-
-# LOAD UI MAIN
-# ///////////////////////////////////////////////////////////////
 from . ui_main import *
-
-# MAIN FUNCTIONS 
-# ///////////////////////////////////////////////////////////////
 from . functions_main_window import *
-
-# PY WINDOW
-# ///////////////////////////////////////////////////////////////
 class SetupMainWindow:
     def __init__(self):
         super().__init__()
-        # SETUP MAIN WINDOw
-        # Load widgets from "gui\uis\main_window\ui_main.py"
-        # ///////////////////////////////////////////////////////////////
+        #Setup main window
         self.ui = UI_MainWindow()
         self.ui.setup_ui(self)
 
-    # ADD LEFT MENUS
-    # ///////////////////////////////////////////////////////////////
+    #Add left menus
     add_left_menus = [
         {
             "btn_icon" : "icon_home.svg",
             "btn_id" : "btn_home",
-            "btn_text" : "Home",
+            "btn_text" : "FPT",
             "btn_tooltip" : "Home page",
             "show_top" : True,
             "is_active" : True
@@ -70,7 +28,7 @@ class SetupMainWindow:
         {
             "btn_icon" : "icon_widgets.svg",
             "btn_id" : "btn_widgets",
-            "btn_text" : "Show Custom Widgets",
+            "btn_text" : "CTG",
             "btn_tooltip" : "Show custom widgets",
             "show_top" : True,
             "is_active" : False
@@ -78,27 +36,27 @@ class SetupMainWindow:
         {
             "btn_icon" : "icon_add_user.svg",
             "btn_id" : "btn_add_user",
-            "btn_text" : "Add Users",
+            "btn_text" : "LCG",
             "btn_tooltip" : "Add users",
             "show_top" : True,
             "is_active" : False
         },
-        {
-            "btn_icon" : "icon_file.svg",
-            "btn_id" : "btn_new_file",
-            "btn_text" : "New File",
-            "btn_tooltip" : "Create new file",
-            "show_top" : True,
-            "is_active" : False
-        },
-        {
-            "btn_icon" : "icon_folder_open.svg",
-            "btn_id" : "btn_open_file",
-            "btn_text" : "Open File",
-            "btn_tooltip" : "Open file",
-            "show_top" : True,
-            "is_active" : False
-        },
+        # {
+        #     "btn_icon" : "icon_file.svg",
+        #     "btn_id" : "btn_new_file",
+        #     "btn_text" : "New File",
+        #     "btn_tooltip" : "Create new file",
+        #     "show_top" : True,
+        #     "is_active" : False
+        # },
+        # {
+        #     "btn_icon" : "icon_folder_open.svg",
+        #     "btn_id" : "btn_open_file",
+        #     "btn_text" : "Open File",
+        #     "btn_tooltip" : "Open file",
+        #     "show_top" : True,
+        #     "is_active" : False
+        # },
         {
             "btn_icon" : "icon_save.svg",
             "btn_id" : "btn_save",
@@ -126,20 +84,6 @@ class SetupMainWindow:
     ]
 
     #! Add more functions in title bar
-    add_title_bar_menus = [
-        # {
-        #     "btn_icon" : "icon_search.svg",
-        #     "btn_id" : "btn_search",
-        #     "btn_tooltip" : "Search",
-        #     "is_active" : False
-        # },
-        # {
-        #     "btn_icon" : "icon_settings.svg",
-        #     "btn_id" : "btn_top_settings",
-        #     "btn_tooltip" : "Top settings",
-        #     "is_active" : False
-        # }
-    ]
 
     #Custom buttons and wiget
     def setup_btns(self):
@@ -175,10 +119,7 @@ class SetupMainWindow:
         #*Set signals
         self.ui.left_menu.clicked.connect(self.btn_clicked)
         self.ui.left_menu.released.connect(self.btn_released)
-
         #Title bar/ add extra buttons
-        #*Add menus
-        self.ui.title_bar.add_menus(SetupMainWindow.add_title_bar_menus)
         #*Set signals
         self.ui.title_bar.clicked.connect(self.btn_clicked)
         self.ui.title_bar.released.connect(self.btn_released)\
@@ -198,7 +139,6 @@ class SetupMainWindow:
             title = "Settings Left Column",
             icon_path = Functions.set_svg_icon("icon_settings.svg")
         )
-        MainFunctions.set_right_column_menu(self, self.ui.right_column.menu_1)
         #Load settings
         settings = Settings()
         self.settings = settings.items

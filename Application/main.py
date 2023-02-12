@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
             #Load Page 2
             MainFunctions.set_page(self, self.ui.load_pages.page_2)
 
-        #* Add Usert
+        #* Add User
         if btn.objectName() == "btn_add_user":
             self.ui.left_menu.select_only_one(btn.objectName())
             #Load Page 3 
