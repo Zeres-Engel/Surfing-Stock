@@ -1,8 +1,8 @@
 {
-    "app_name": "Suffing Stock",
+    "app_name": "PyOneDark - Modern GUI",
     "version" : "v1.0.0",
-    "copyright" : "By: Nguyễn Phước Thành (Engel)",
-    "year" : 2023,
+    "copyright" : "By: Wanderson M. Pimenta",
+    "year" : 2021,
     "theme_name" : "default",
     "custom_title_bar": true,
     "startup_size": [
@@ -14,7 +14,7 @@
         540
     ],
     "lef_menu_size" : {
-        "minimum" : 240,
+        "minimum" : 50,
         "maximum" : 240
     },
     "left_menu_content_margins" : 3,

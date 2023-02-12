@@ -1,9 +1,34 @@
+# ///////////////////////////////////////////////////////////////
+#
+# BY: WANDERSON M.PIMENTA
+# PROJECT MADE WITH: Qt Designer and PySide6
+# V: 1.0.0
+#
+# This project can be used freely for all uses, as long as they maintain the
+# respective credits only in the Python scripts, any information in the visual
+# interface (GUI) can be modified without any implication.
+#
+# There are limitations on Qt licenses if you want to use your products
+# commercially, I recommend reading them on the official website:
+# https://doc.qt.io/qtforpython/licenses.html
+#
+# ///////////////////////////////////////////////////////////////
+
+# IMPORT QT CORE
+# ///////////////////////////////////////////////////////////////
 from qt_core import *
+
+# IMPORT BUTTON AND DIV
+# ///////////////////////////////////////////////////////////////
 from . py_left_menu_button import PyLeftMenuButton
 from . py_div import PyDiv
 
+# IMPORT FUNCTIONS
+# ///////////////////////////////////////////////////////////////
 from gui.core.functions import *
 
+# PY LEFT MENU
+# ///////////////////////////////////////////////////////////////
 class PyLeftMenu(QWidget):
     # SIGNALS
     clicked = Signal(object)
@@ -36,6 +61,7 @@ class PyLeftMenu(QWidget):
         super().__init__()
 
         # PROPERTIES
+        # ///////////////////////////////////////////////////////////////
         self._dark_one = dark_one
         self._dark_three = dark_three
         self._dark_four = dark_four
@@ -65,6 +91,7 @@ class PyLeftMenu(QWidget):
         self.bg.setStyleSheet(f"background: {dark_one}; border-radius: {radius};")
 
         # TOGGLE BUTTON AND DIV MENUS
+        # ///////////////////////////////////////////////////////////////
         self.toggle_button = PyLeftMenuButton(
             app_parent, 
             text = toggle_text, 
@@ -86,16 +113,19 @@ class PyLeftMenu(QWidget):
         self.div_top = PyDiv(dark_four)
 
         # ADD TO TOP LAYOUT
+        # ///////////////////////////////////////////////////////////////
         self.top_layout.addWidget(self.toggle_button)
         self.top_layout.addWidget(self.div_top)
 
         # ADD TO BOTTOM LAYOUT
+        # ///////////////////////////////////////////////////////////////
         self.div_bottom = PyDiv(dark_four)
         self.div_bottom.hide()
         self.bottom_layout.addWidget(self.div_bottom)
 
     # ADD BUTTONS TO LEFT MENU
     # Add btns and emit signals
+    # ///////////////////////////////////////////////////////////////
     def add_menus(self, parameters):
         if parameters != None:
             for parameter in parameters:
