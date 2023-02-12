@@ -1,7 +1,7 @@
 {
     "app_name": "Suffing Stock",
     "version" : "v1.0.0",
-    "copyright" : "By: Wanderson M. Pimenta",
+    "copyright" : "By: Nguyễn Phước Thành (Engel)",
     "year" : 2023,
     "theme_name" : "default",
     "custom_title_bar": true,

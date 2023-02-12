@@ -56,17 +56,17 @@ class MainWindow(QMainWindow):
             #Check information
             if not MainFunctions.left_column_is_visible(self):
                 self.ui.left_menu.select_only_one_tab(btn.objectName())
-                # Show / Hide
+                #Show / Hide
                 MainFunctions.toggle_left_column(self)
                 self.ui.left_menu.select_only_one_tab(btn.objectName())
             else:
                 if btn.objectName() == "btn_close_left_column":
                     self.ui.left_menu.deselect_all_tab()
-                    # Show / Hide
+                    #Show / Hide
                     MainFunctions.toggle_left_column(self)
                 
                 self.ui.left_menu.select_only_one_tab(btn.objectName())
-            # Change Left Column Menu
+            #Change Left Column Menu
             if btn.objectName() != "btn_close_left_column":
                 MainFunctions.set_left_column_menu(
                     self, 
@@ -96,22 +96,6 @@ class MainWindow(QMainWindow):
                     title = "Settings Left Column",
                     icon_path = Functions.set_svg_icon("icon_settings.svg")
                 )
-        
-        #!SETTINGS TITLE BAR
-        if btn.objectName() == "btn_top_settings":
-            # Toogle Active
-            if not MainFunctions.right_column_is_visible(self):
-                btn.set_active(True)
-                # Show / Hide
-                MainFunctions.toggle_right_column(self)
-            else:
-                btn.set_active(False)
-                # Show / Hide
-                MainFunctions.toggle_right_column(self)
-            # Get Left Menu Btn            
-            top_settings = MainFunctions.get_left_menu_btn(self, "btn_settings")
-            top_settings.set_active_tab(False)            
-        #Debugger
         print(f"Button {btn.objectName()}, clicked!")
 
     #Debuger Button

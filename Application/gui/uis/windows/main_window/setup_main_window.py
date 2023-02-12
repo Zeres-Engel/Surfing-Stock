@@ -41,22 +41,6 @@ class SetupMainWindow:
             "show_top" : True,
             "is_active" : False
         },
-        # {
-        #     "btn_icon" : "icon_file.svg",
-        #     "btn_id" : "btn_new_file",
-        #     "btn_text" : "New File",
-        #     "btn_tooltip" : "Create new file",
-        #     "show_top" : True,
-        #     "is_active" : False
-        # },
-        # {
-        #     "btn_icon" : "icon_folder_open.svg",
-        #     "btn_id" : "btn_open_file",
-        #     "btn_text" : "Open File",
-        #     "btn_tooltip" : "Open file",
-        #     "show_top" : True,
-        #     "is_active" : False
-        # },
         {
             "btn_icon" : "icon_save.svg",
             "btn_id" : "btn_save",
@@ -84,7 +68,6 @@ class SetupMainWindow:
     ]
 
     #! Add more functions in title bar
-
     #Custom buttons and wiget
     def setup_btns(self):
         if self.ui.title_bar.sender() != None:
@@ -93,7 +76,6 @@ class SetupMainWindow:
             return self.ui.left_menu.sender()
         elif self.ui.left_column.sender() != None:
             return self.ui.left_column.sender()
-
     #Custom main window with custom parameters
     def setup_gui(self):
         #*App title
@@ -112,7 +94,6 @@ class SetupMainWindow:
             self.top_right_grip = PyGrips(self, "top_right", self.hide_grips)
             self.bottom_left_grip = PyGrips(self, "bottom_left", self.hide_grips)
             self.bottom_right_grip = PyGrips(self, "bottom_right", self.hide_grips)
-
         #Left menus when clicked and released
         #*Add menus
         self.ui.left_menu.add_menus(SetupMainWindow.add_left_menus)
@@ -145,7 +126,6 @@ class SetupMainWindow:
         #Load themes
         themes = Themes()
         self.themes = themes.items
-        
         #Left column
         #*Button 1
         self.left_btn_1 = PyPushButton(
@@ -180,8 +160,8 @@ class SetupMainWindow:
         #*Page 1 - Add logo to main page
         self.logo_svg = QSvgWidget(Functions.set_svg_image("logo_home.svg"))
         self.ui.load_pages.logo_layout.addWidget(self.logo_svg, Qt.AlignCenter, Qt.AlignCenter)
-
         #*Page 2
+        #Frontend here and backend in 
         #! CIRCULAR PROGRESS 1
         self.circular_progress_1 = PyCircularProgress(
             value = 80,
@@ -191,7 +171,6 @@ class SetupMainWindow:
             bg_color = self.themes["app_color"]["dark_four"]
         )
         self.circular_progress_1.setFixedSize(200,200)
-
         #! CIRCULAR PROGRESS 2
         self.circular_progress_2 = PyCircularProgress(
             value = 45,
@@ -202,7 +181,6 @@ class SetupMainWindow:
             bg_color = self.themes["app_color"]["bg_three"]
         )
         self.circular_progress_2.setFixedSize(160,160)
-
         #!CIRCULAR PROGRESS 3
         self.circular_progress_3 = PyCircularProgress(
             value = 75,
@@ -213,7 +191,6 @@ class SetupMainWindow:
             bg_color = self.themes["app_color"]["bg_three"]
         )
         self.circular_progress_3.setFixedSize(140,140)
-
         #! PY SLIDER 1
         self.vertical_slider_1 = PySlider(
             margin=8,
@@ -229,7 +206,6 @@ class SetupMainWindow:
             handle_color_pressed = self.themes["app_color"]["context_pressed"]
         )
         self.vertical_slider_1.setMinimumHeight(100)
-
         #! PY SLIDER 2
         self.vertical_slider_2 = PySlider(
             bg_color = self.themes["app_color"]["dark_three"],
@@ -239,7 +215,6 @@ class SetupMainWindow:
             handle_color_pressed = self.themes["app_color"]["context_pressed"]
         )
         self.vertical_slider_2.setMinimumHeight(100)
-
         #! PY SLIDER 3
         self.vertical_slider_3 = PySlider(
             margin=8,
@@ -256,7 +231,6 @@ class SetupMainWindow:
         )
         self.vertical_slider_3.setOrientation(Qt.Horizontal)
         self.vertical_slider_3.setMaximumWidth(200)
-
         #! PY SLIDER 4
         self.vertical_slider_4 = PySlider(
             bg_color = self.themes["app_color"]["dark_three"],
@@ -267,7 +241,6 @@ class SetupMainWindow:
         )
         self.vertical_slider_4.setOrientation(Qt.Horizontal)
         self.vertical_slider_4.setMaximumWidth(200)
-
         #! Icon button 1
         self.icon_button_1 = PyIconButton(
             icon_path = Functions.set_svg_icon("icon_heart.svg"),
@@ -286,7 +259,6 @@ class SetupMainWindow:
             bg_color_hover = self.themes["app_color"]["dark_three"],
             bg_color_pressed = self.themes["app_color"]["pink"]
         )
-
         #! Icon button 2
         self.icon_button_2 = PyIconButton(
             icon_path = Functions.set_svg_icon("icon_add_user.svg"),
@@ -305,7 +277,6 @@ class SetupMainWindow:
             bg_color_hover = self.themes["app_color"]["dark_three"],
             bg_color_pressed = self.themes["app_color"]["green"],
         )
-
         #! Icon button 3
         self.icon_button_3 = PyIconButton(
             icon_path = Functions.set_svg_icon("icon_add_user.svg"),
@@ -325,7 +296,6 @@ class SetupMainWindow:
             bg_color_pressed = self.themes["app_color"]["context_color"],
             is_active = True
         )
-
         #! Push button 1
         self.push_button_1 = PyPushButton(
             text = "Button Without Icon",
@@ -336,7 +306,6 @@ class SetupMainWindow:
             bg_color_pressed = self.themes["app_color"]["dark_four"]
         )
         self.push_button_1.setMinimumHeight(40)
-
         #! Push button 2
         self.push_button_2 = PyPushButton(
             text = "Button With Icon",
@@ -349,7 +318,6 @@ class SetupMainWindow:
         self.icon_2 = QIcon(Functions.set_svg_icon("icon_settings.svg"))
         self.push_button_2.setMinimumHeight(40)
         self.push_button_2.setIcon(self.icon_2)
-
         #! PY line edit
         self.line_edit = PyLineEdit(
             text = "",
@@ -363,7 +331,6 @@ class SetupMainWindow:
             context_color = self.themes["app_color"]["context_color"]
         )
         self.line_edit.setMinimumHeight(30)
-
         #! Toggle button
         self.toggle_button = PyToggle(
             width = 50,
@@ -371,7 +338,6 @@ class SetupMainWindow:
             circle_color = self.themes["app_color"]["icon_color"],
             active_color = self.themes["app_color"]["context_color"]
         )
-
         #! Table widgets
         self.table_widget = PyTableWidget(
             radius = 8,
@@ -390,25 +356,20 @@ class SetupMainWindow:
         self.table_widget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.table_widget.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.table_widget.setSelectionBehavior(QAbstractItemView.SelectRows)
-
-        # Columns / Header
+        #Columns / Header
         self.column_1 = QTableWidgetItem()
         self.column_1.setTextAlignment(Qt.AlignCenter)
         self.column_1.setText("NAME")
-
         self.column_2 = QTableWidgetItem()
         self.column_2.setTextAlignment(Qt.AlignCenter)
         self.column_2.setText("NICK")
-
         self.column_3 = QTableWidgetItem()
         self.column_3.setTextAlignment(Qt.AlignCenter)
         self.column_3.setText("PASS")
-
         #Set column
         self.table_widget.setHorizontalHeaderItem(0, self.column_1)
         self.table_widget.setHorizontalHeaderItem(1, self.column_2)
         self.table_widget.setHorizontalHeaderItem(2, self.column_3)
-
         for x in range(10):
             row_number = self.table_widget.rowCount()
             self.table_widget.insertRow(row_number) # Insert row
@@ -419,7 +380,6 @@ class SetupMainWindow:
             self.pass_text.setText("12345" + str(x))
             self.table_widget.setItem(row_number, 2, self.pass_text) # Add pass
             self.table_widget.setRowHeight(row_number, 22)
-
         #Add widgets
         self.ui.load_pages.row_1_layout.addWidget(self.circular_progress_1)
         self.ui.load_pages.row_1_layout.addWidget(self.circular_progress_2)
@@ -437,43 +397,6 @@ class SetupMainWindow:
         self.ui.load_pages.row_4_layout.addWidget(self.line_edit)
         self.ui.load_pages.row_5_layout.addWidget(self.table_widget)
 
-        #!Right Column
-        #Buton 1 in settings top
-        # self.right_btn_1 = PyPushButton(
-        #     text="Show Menu 2",
-        #     radius=8,
-        #     color=self.themes["app_color"]["text_foreground"],
-        #     bg_color=self.themes["app_color"]["dark_one"],
-        #     bg_color_hover=self.themes["app_color"]["dark_three"],
-        #     bg_color_pressed=self.themes["app_color"]["dark_four"]
-        # )
-        # self.icon_right = QIcon(Functions.set_svg_icon("icon_arrow_right.svg"))
-        # self.right_btn_1.setIcon(self.icon_right)
-        # self.right_btn_1.setMaximumHeight(40)
-        # self.right_btn_1.clicked.connect(lambda: MainFunctions.set_right_column_menu(
-        #     self,
-        #     self.ui.right_column.menu_2
-        # ))
-        # self.ui.right_column.btn_1_layout.addWidget(self.right_btn_1)
-
-        # #Buton 2 in settings top
-        # self.right_btn_2 = PyPushButton(
-        #     text="Show Menu 1",
-        #     radius=8,
-        #     color=self.themes["app_color"]["text_foreground"],
-        #     bg_color=self.themes["app_color"]["dark_one"],
-        #     bg_color_hover=self.themes["app_color"]["dark_three"],
-        #     bg_color_pressed=self.themes["app_color"]["dark_four"]
-        # )
-        # self.icon_left = QIcon(Functions.set_svg_icon("icon_arrow_left.svg"))
-        # self.right_btn_2.setIcon(self.icon_left)
-        # self.right_btn_2.setMaximumHeight(40)
-        # self.right_btn_2.clicked.connect(lambda: MainFunctions.set_right_column_menu(
-        #     self,
-        #     self.ui.right_column.menu_1
-        # ))
-        # self.ui.right_column.btn_2_layout.addWidget(self.right_btn_2)
-        
     def resize_grips(self):
         if self.settings["custom_title_bar"]:
             self.left_grip.setGeometry(5, 10, 10, self.height())

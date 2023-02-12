@@ -50,7 +50,6 @@ class Ui_MainPages(object):
         self.label.setAlignment(Qt.AlignCenter)
         self.center_page_layout.addWidget(self.label)
         self.page_1_layout.addWidget(self.welcome_base, 0, Qt.AlignHCenter)
-
         self.pages.addWidget(self.page_1)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
@@ -81,45 +80,29 @@ class Ui_MainPages(object):
         self.title_label.setFont(font)
         self.title_label.setStyleSheet(u"font-size: 16pt")
         self.title_label.setAlignment(Qt.AlignCenter)
-
         self.verticalLayout.addWidget(self.title_label)
-
         self.description_label = QLabel(self.contents)
         self.description_label.setObjectName(u"description_label")
         self.description_label.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         self.description_label.setWordWrap(True)
-
         self.verticalLayout.addWidget(self.description_label)
-
         self.row_1_layout = QHBoxLayout()
         self.row_1_layout.setObjectName(u"row_1_layout")
-
         self.verticalLayout.addLayout(self.row_1_layout)
-
         self.row_2_layout = QHBoxLayout()
         self.row_2_layout.setObjectName(u"row_2_layout")
-
         self.verticalLayout.addLayout(self.row_2_layout)
-
         self.row_3_layout = QHBoxLayout()
         self.row_3_layout.setObjectName(u"row_3_layout")
-
         self.verticalLayout.addLayout(self.row_3_layout)
-
         self.row_4_layout = QVBoxLayout()
         self.row_4_layout.setObjectName(u"row_4_layout")
-
         self.verticalLayout.addLayout(self.row_4_layout)
-
         self.row_5_layout = QVBoxLayout()
         self.row_5_layout.setObjectName(u"row_5_layout")
-
         self.verticalLayout.addLayout(self.row_5_layout)
-
         self.scroll_area.setWidget(self.contents)
-
         self.page_2_layout.addWidget(self.scroll_area)
-
         self.pages.addWidget(self.page_2)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
@@ -130,21 +113,13 @@ class Ui_MainPages(object):
         self.empty_page_label.setObjectName(u"empty_page_label")
         self.empty_page_label.setFont(font)
         self.empty_page_label.setAlignment(Qt.AlignCenter)
-
         self.page_3_layout.addWidget(self.empty_page_label)
-
-        self.pages.addWidget(self.page_3)
-
+        self.pages.addWidget(self.page_3) 
         self.main_pages_layout.addWidget(self.pages)
-
-
         self.retranslateUi(MainPages)
-
         self.pages.setCurrentIndex(0)
-
-
         QMetaObject.connectSlotsByName(MainPages)
-
+        
     def retranslateUi(self, MainPages):
         MainPages.setWindowTitle(QCoreApplication.translate("MainPages", u"Form", None))
 
