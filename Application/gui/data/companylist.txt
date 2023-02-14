@@ -1,0 +1,4 @@
+FPT
+CTG
+LCG
+HAG
