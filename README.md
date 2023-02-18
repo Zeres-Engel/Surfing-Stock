@@ -61,7 +61,8 @@ model = Sequential()
 cells = 248
 model.add(LSTM(units = cells, activation='tanh', recurrent_activation='sigmoid', input_shape = (x_train.shape[1], x_train.shape[2]))) #input traning date and predicting date 
 model.add(Dropout(0.1))
-model.add(Dense(units = len(cols_y)))
+model.add(Dense(units = len(cols_y))) 
+```
 
 ### Optimizer (Adam)
 Using the Adam optimizer for stock price prediction models has several benefits, including stability, adaptiveness, and efficiency. It helps the model converge faster, achieve better results, and optimize more efficiently than other optimizers such as SGD or Adagrad.
