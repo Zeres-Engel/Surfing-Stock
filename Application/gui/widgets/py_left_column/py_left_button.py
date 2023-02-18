@@ -59,7 +59,6 @@ class PyLeftButton(QPushButton):
     def is_active(self):
         return self._is_active
     def paintEvent(self, event):
-        # PAINTER
         paint = QPainter()
         paint.begin(self)
         paint.setRenderHint(QPainter.RenderHint.Antialiasing)

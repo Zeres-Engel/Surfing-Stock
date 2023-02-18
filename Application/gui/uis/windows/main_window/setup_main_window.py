@@ -16,26 +16,26 @@ class SetupMainWindow:
         self.ui.setup_ui(self)
     add_left_menus = [
         {
-            "btn_icon" : "icon_home.svg",
-            "btn_id" : "btn_home",
-            "btn_text" : "Home",
-            "btn_tooltip" : "Home page",
+            "btn_icon" : "icon_FPT.svg",
+            "btn_id" : "btn_FPT",
+            "btn_text" : "Công ty Cổ phần FPT",
+            "btn_tooltip" : "FPT",
             "show_top" : True,
             "is_active" : True
         },
         {
-            "btn_icon" : "icon_widgets.svg",
-            "btn_id" : "btn_widgets",
-            "btn_text" : "Show Custom Widgets",
-            "btn_tooltip" : "Show custom widgets",
+            "btn_icon" : "icon_CTG.svg",
+            "btn_id" : "btn_CTG",
+            "btn_text" : "Ngân hàng TMCP Công Thương",
+            "btn_tooltip" : "CTG",
             "show_top" : True,
             "is_active" : False
         },
         {
-            "btn_icon" : "icon_add_user.svg",
-            "btn_id" : "btn_add_user",
-            "btn_text" : "Add Users",
-            "btn_tooltip" : "Add users",
+            "btn_icon" : "icon_LCG.svg",
+            "btn_id" : "btn_LCG",
+            "btn_text" : "Công ty Cổ phần LIZEN",
+            "btn_tooltip" : "LCG",
             "show_top" : True,
             "is_active" : False
         }
@@ -70,7 +70,6 @@ class SetupMainWindow:
             self.ui.title_bar.set_title(self.settings["app_name"])
         else:
             self.ui.title_bar.set_title("Welcome to PyOneDark")
-            
         self.ui.left_column.clicked.connect(self.btn_clicked)
         self.ui.left_column.released.connect(self.btn_released)
         MainFunctions.set_page(self, self.ui.load_pages.page_1)
@@ -112,21 +111,42 @@ class SetupMainWindow:
         self.ui.left_column.menus.btn_3_layout.addWidget(self.left_btn_3)
         Functions.Crawler()
         Functions.Preprocessing()
-        # PAGE 1 - ADD LOGO TO MAIN PAGE
-        Functions.SetLineGraph('FPT')
-        self.chart_progress_1 =  QSvgWidget(Functions.set_svg_image("FPT.svg"))
-        self.chart_progress_1.setFixedSize(1200,600)
-        self.ui.load_pages.chart_progress_1_layout.addWidget(self.chart_progress_1, Qt.AlignCenter, Qt.AlignCenter)
+        Functions.SetLineGraph(self,'FPT')
+        Functions.Evaluation(self,'FPT')
+        Functions.SetLineGraph(self,'CTG')
+        Functions.Evaluation(self,'CTG')
+        Functions.SetLineGraph(self,'LCG')
+        Functions.Evaluation(self,'LCG')
+        
+         # PAGE 1
+        self.chart_progress_1 = QSvgWidget(Functions.set_svg_image("FPT.svg"))
+        self.chart_progress_1.setFixedSize(1200, 600)
+        self.ui.load_pages.row_1_1layout.addWidget(self.chart_progress_1, Qt.AlignCenter | Qt.AlignCenter)
+
+        self.chart_progress_2 = QSvgWidget(Functions.set_svg_image("FPTeval.svg"))
+        self.chart_progress_2.setFixedSize(1200, 600)
+        self.ui.load_pages.row_2_1layout.addWidget(self.chart_progress_2, Qt.AlignCenter | Qt.AlignCenter)
+        
         # PAGE 2
-        Functions.SetLineGraph('FPT')
-        self.chart_progress_2 = QSvgWidget(Functions.set_svg_image("FPT.svg"))
-        self.chart_progress_2.setFixedSize(1200,600)
-        self.ui.load_pages.chart_progress_2_layout.addWidget(self.chart_progress_2, Qt.AlignCenter, Qt.AlignCenter)
+        # Functions.SetLineGraph(self,'FPT')
+        self.chart_progress_1 = QSvgWidget(Functions.set_svg_image("CTG.svg"))
+        self.chart_progress_1.setFixedSize(1200, 600)
+        self.ui.load_pages.row_1_2layout.addWidget(self.chart_progress_1, Qt.AlignCenter | Qt.AlignCenter)
+        
+        self.chart_progress_2 = QSvgWidget(Functions.set_svg_image("CTGeval.svg"))
+        self.chart_progress_2.setFixedSize(1200, 600)
+        self.ui.load_pages.row_2_2layout.addWidget(self.chart_progress_2, Qt.AlignCenter | Qt.AlignCenter)
+        
         # PAGE 3
-        Functions.SetLineGraph('FPT')
-        self.chart_progress_3 = QSvgWidget(Functions.set_svg_image("FPT.svg"))
-        self.chart_progress_3.setFixedSize(1200,600)
-        self.ui.load_pages.chart_progress_3_layout.addWidget(self.chart_progress_3, Qt.AlignCenter, Qt.AlignCenter)
+        # Functions.SetLineGraph(self,'FPT')
+        self.chart_progress_1 = QSvgWidget(Functions.set_svg_image("LCG.svg"))
+        self.chart_progress_1.setFixedSize(1200, 600)
+        self.ui.load_pages.row_1_3layout.addWidget(self.chart_progress_1, Qt.AlignCenter | Qt.AlignCenter)
+
+        self.chart_progress_2 = QSvgWidget(Functions.set_svg_image("LCGeval.svg"))
+        self.chart_progress_2.setFixedSize(1200, 600)
+        self.ui.load_pages.row_2_3layout.addWidget(self.chart_progress_2, Qt.AlignCenter | Qt.AlignCenter)
+        
     def resize_grips(self):
         if self.settings["custom_title_bar"]:
             self.left_grip.setGeometry(5, 10, 10, self.height())

@@ -14,21 +14,29 @@ from keras.models import load_model
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM
 class Functions:
+    def __init__(self):
+        model = Sequential()
+        cells = 128
+        model.add(LSTM(units = cells, activation='tanh', recurrent_activation='sigmoid', input_shape = (7, 31))) #input traning date and predicting date 
+        model.add(Dropout(0.1))
+        model.add(Dense(units = 1))  
+        self.model = model
+        
     def set_svg_icon(icon_name):
         app_path = os.path.abspath(os.getcwd())
-        folder = "gui/images/svg_icons/"
+        folder = "./gui/images/svg_icons/"
         path = os.path.join(app_path, folder)
         icon = os.path.normpath(os.path.join(path, icon_name))
         return icon
     def set_svg_image(icon_name):
         app_path = os.path.abspath(os.getcwd())
-        folder = "gui/images/svg_images/"
+        folder = "./gui/images/svg_images/"
         path = os.path.join(app_path, folder)
         image = os.path.normpath(os.path.join(path, icon_name))
         return image
     def set_image(image_name):
         app_path = os.path.abspath(os.getcwd())
-        folder = "gui/images/images/"
+        folder = "./gui/images/images/"
         path = os.path.join(app_path, folder)
         image = os.path.normpath(os.path.join(path, image_name))
         return image
@@ -83,7 +91,8 @@ class Functions:
             df[df.replace([np.inf, -np.inf], np.nan).notnull().all(axis = 1)]
             df.dropna(inplace = True)
             df.to_csv(f"./gui/data/prepaired/{company}pre.csv", encoding = "utf-8")
-    def SetLineGraph(company):
+        
+    def SetLineGraph(self,company):
         df = pd.read_csv(f"./gui/data/prepaired/{company}pre.csv", encoding = "utf-8")
         MA1 = 7
         MA2 = 14
@@ -91,39 +100,93 @@ class Functions:
         MA4 = 28
         scaler_x = MinMaxScaler(feature_range = (0, 1))
         scaler_y = MinMaxScaler(feature_range = (0, 1))
-        cols_x = ['Close','H-L', 'O-C', 'Volume', f'ME_{MA1}', f'ME_{MA2}', f'ME_{MA3}', f'ME_{MA4}', f'VAR_{MA1}', f'VAR_{MA2}', f'VAR_{MA3}', f'VAR_{MA4}', f'RANK_{MA1}', f'RANK_{MA2}', f'RANK_{MA3}', f'RANK_{MA4}', f'SMA_{MA1}', f'SMA_{MA2}', f'SMA_{MA3}', f'SMA_{MA4}', f'SD_{MA1}' ,f'SD_{MA2}', f'SD_{MA3}', f'SD_{MA4}', f'Ske_{MA1}', f'Ske_{MA2}', f'Ske_{MA3}', f'Ske_{MA4}', f'Kur_{MA1}', f'Kur_{MA2}', f'Kur_{MA3}', f'Kur_{MA4}',] #Variables for training
-        cols_y = ['Close','H-L', 'O-C', 'Volume', f'ME_{MA1}', f'ME_{MA2}', f'ME_{MA3}', f'ME_{MA4}', f'VAR_{MA1}', f'VAR_{MA2}', f'VAR_{MA3}', f'VAR_{MA4}', f'RANK_{MA1}', f'RANK_{MA2}', f'RANK_{MA3}', f'RANK_{MA4}', f'SMA_{MA1}', f'SMA_{MA2}', f'SMA_{MA3}', f'SMA_{MA4}', f'SD_{MA1}' ,f'SD_{MA2}', f'SD_{MA3}', f'SD_{MA4}', f'Ske_{MA1}', f'Ske_{MA2}', f'Ske_{MA3}', f'Ske_{MA4}', f'Kur_{MA1}', f'Kur_{MA2}', f'Kur_{MA3}', f'Kur_{MA4}',]
+        cols_x = ['H-L', 'O-C', 'Volume', f'ME_{MA1}', f'ME_{MA2}', f'ME_{MA3}', f'ME_{MA4}', f'VAR_{MA1}', f'VAR_{MA2}', f'VAR_{MA3}', f'VAR_{MA4}', f'RANK_{MA1}', f'RANK_{MA2}', f'RANK_{MA3}', f'RANK_{MA4}', f'SMA_{MA1}', f'SMA_{MA2}', f'SMA_{MA3}', f'SMA_{MA4}', f'SD_{MA1}' ,f'SD_{MA2}', f'SD_{MA3}', f'SD_{MA4}', f'Ske_{MA1}', f'Ske_{MA2}', f'Ske_{MA3}', f'Ske_{MA4}', f'Kur_{MA1}', f'Kur_{MA2}', f'Kur_{MA3}', f'Kur_{MA4}'] #Variables for training
+        cols_y = ['Close']
         scaled_data_x = scaler_x.fit_transform(df[cols_x].values.reshape(-1, len(cols_x))) 
         scaled_data_y = scaler_y.fit_transform(df[cols_y].values.reshape(-1, len(cols_y)))
-        model = Sequential()
-        cells = 180
-        model.add(LSTM(units = cells, return_sequences = True, activation='tanh', recurrent_activation='sigmoid', input_shape = (90, 32))) #input traning date and predicting date 
-        model.add(Dropout(0.1))
-        model.add(LSTM(units = cells))
-        model.add(Dropout(0.1))
-        model.add(Dense(units = 32))
-        model = load_model(f".\gui\model\{company}.h5")
-        real_prices = df[len(df)-31:]['Close'].values.reshape(-1, 1)
+        self.model = load_model(f"./gui/model/{company}.h5")
+        real_prices = df.loc[len(df)-7:, ['Close', 'Volume']]
         real_prices = np.array(real_prices)
-        real_prices = real_prices.reshape(real_prices.shape[0], 1)
-        predict_prices = real_prices
-        x_predict = df[len(df)-90:][cols_x].values.reshape(-1, len(cols_x))
+        predict_prices = real_prices[:, 0]
+        x_predict = df[len(df)-7:][cols_x].values.reshape(-1, len(cols_x))
         x_predict = scaler_x.transform(x_predict)
         x_predict = np.array(x_predict)
         x_predict = x_predict.reshape(1, x_predict.shape[0], len(cols_x))
-        for i in range(30):
-            prediction = model.predict(x_predict)
-            prediction = scaler_y.inverse_transform(prediction)
-            predict_prices = np.append(predict_prices, [prediction[0][0]])
-            for i in range(30):
-                x_predict[0][i] = x_predict[0][i + 1]
-            prediction = scaler_x.transform(prediction)
-            x_predict[0][30] = prediction
-        plt.figure(figsize=(10, 5))
-        plt.plot(predict_prices, color="blue", label=f"Predicted {company}'s prices")
-        plt.plot(real_prices, color="red", label=f"Real {company}'s prices")
-        plt.title(f"{company}'s prices for 10 years")
-        plt.xlabel("Days")
-        plt.ylabel("Stock Prices")
-        plt.legend()
-        plt.savefig(f".\gui\images\svg_images\{company}.svg", format="svg")
+        prediction = self.model.predict(x_predict)
+        prediction = scaler_y.inverse_transform(prediction)
+        predict_prices = np.append(predict_prices, prediction)
+        font = "Segoe UI"  
+        font_color = "gray"  
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.grid(True, linewidth=0.5, color='gray', zorder=1)
+        if predict_prices[6] < predict_prices[7]:
+            ax.plot(predict_prices, color="#58D68D", label=f"predict", zorder=2)
+        else:
+            ax.plot(predict_prices, color="#FF6666", label=f"predict", zorder=2)
+        ax.plot(real_prices[:, 0], color="#FFCC33", label=f"real", zorder=2)
+        real_volumes = np.multiply(real_prices[:, 1], (np.max(predict_prices)/2/(np.max(real_prices[:, 1]))))
+        x = np.arange(len(real_volumes))  
+        width = 0.4  
+        ax.bar(x - width/2, real_volumes , width, color="#33CCFF", label='volume', align='edge', zorder=2)
+        ax.scatter(np.arange(len(real_prices[:, 0])), real_prices[:, 0], color='#FFCC33', zorder=2)
+        for i, price in enumerate(real_prices[:, 0]):
+            ax.annotate(f"{price:.2f}", (i, real_prices[i, 0]), xytext=(5, 10), textcoords='offset points', color='#FFCC33', ha='center', zorder=2)
+        if predict_prices[6] < predict_prices[7]:
+            ax.scatter(len(predict_prices)-1, predict_prices[-1], color="#58D68D", zorder=2)
+            ax.annotate(predict_prices[-1], xy=(len(predict_prices)-1, predict_prices[-1]), xytext=(-10, 10), textcoords='offset points', color="#58D68D",zorder=2 )
+        else:
+            ax.scatter(len(predict_prices)-1, predict_prices[-1], color="#FF6666", zorder=2)
+            ax.annotate(predict_prices[-1], xy=(len(predict_prices)-1, predict_prices[-1]), xytext=(-10, 10), textcoords='offset points', color="#FF6666", zorder=2)
+        ax.legend(loc= 'lower right')
+        ax.spines['bottom'].set_color('#6699FF')
+        ax.spines['left'].set_color('#6699FF')
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.tick_params(colors=font_color)
+        ax.set_ylim(0, np.max(predict_prices)*1.2)
+        plt.savefig(f"./gui/images/svg_images/{company}.svg", format="svg", transparent=True)
+    
+    def Evaluation(self, company):
+        df = pd.read_csv(f"./gui/data/prepaired/{company}pre.csv", encoding = "utf-8")
+        MA1 = 7
+        MA2 = 14
+        MA3 = 21
+        MA4 = 28
+        scaler_x = MinMaxScaler(feature_range = (0, 1))
+        scaler_y = MinMaxScaler(feature_range = (0, 1))
+        cols_x = ['H-L', 'O-C', 'Volume', f'ME_{MA1}', f'ME_{MA2}', f'ME_{MA3}', f'ME_{MA4}', f'VAR_{MA1}', f'VAR_{MA2}', f'VAR_{MA3}', f'VAR_{MA4}', f'RANK_{MA1}', f'RANK_{MA2}', f'RANK_{MA3}', f'RANK_{MA4}', f'SMA_{MA1}', f'SMA_{MA2}', f'SMA_{MA3}', f'SMA_{MA4}', f'SD_{MA1}' ,f'SD_{MA2}', f'SD_{MA3}', f'SD_{MA4}', f'Ske_{MA1}', f'Ske_{MA2}', f'Ske_{MA3}', f'Ske_{MA4}', f'Kur_{MA1}', f'Kur_{MA2}', f'Kur_{MA3}', f'Kur_{MA4}'] #Variables for training
+        cols_y = ['Close']
+        scaled_data_x = scaler_x.fit_transform(df[cols_x].values.reshape(-1, len(cols_x))) 
+        scaled_data_y = scaler_y.fit_transform(df[cols_y].values.reshape(-1, len(cols_y)))
+        pre_day = 7
+        x_total = [] # Variables today
+        y_total = [] #Close price tomorrow
+        for i in range(pre_day, len(df)):
+            x_total.append(scaled_data_x[i - pre_day : i])
+            y_total.append(scaled_data_y[i])
+        test_size = 60
+        x_train = np.array(x_total[:len(x_total)-test_size]) 
+        y_train = np.array(y_total[:len(y_total)-test_size])
+        x_test = np.array(x_total[len(x_total)-test_size:]) 
+        y_test = np.array(y_total[len(y_total)-test_size:]) 
+        real_prices = df.loc[len(df)-test_size:, ['Close', 'Volume']]
+        real_prices = np.array(real_prices)
+        predict_prices = self.model.predict(x_test)
+        predict_prices = scaler_y.inverse_transform(predict_prices)
+        font = "Segoe UI"  
+        font_color = "gray"  
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.grid(True, linewidth=0.5, color='gray', zorder=1)
+        ax.plot(real_prices[:, 0], color="#FFCC33", label=f"real", zorder=2)
+        ax.plot(predict_prices, color="#58D68D", label=f"predict", zorder=2)
+        real_volumes = np.multiply(real_prices[:, 1], (np.max(predict_prices)/2/(np.max(real_prices[:, 1]))))
+        x = np.arange(len(real_volumes))  
+        width = 0.4  
+        ax.bar(x - width/2, real_volumes , width, color="#33CCFF", label='volume', align='edge', zorder=2)
+        ax.legend(loc= 'lower right')
+        ax.spines['bottom'].set_color('#6699FF')
+        ax.spines['left'].set_color('#6699FF')
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.tick_params(colors=font_color)
+        plt.savefig(f"./gui/images/svg_images/{company}eval.svg", format="svg", transparent=True)

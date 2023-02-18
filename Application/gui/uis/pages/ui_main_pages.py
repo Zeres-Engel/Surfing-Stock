@@ -1,6 +1,6 @@
-from PySide6.QtCore import QSize, QMetaObject, QCoreApplication
+from PySide6.QtCore import QSize, QMetaObject, QCoreApplication, QRect
 from PySide6.QtGui import Qt
-from PySide6.QtWidgets import QVBoxLayout, QStackedWidget, QWidget, QFrame, QLabel
+from PySide6.QtWidgets import QVBoxLayout, QStackedWidget, QWidget, QFrame, QLabel, QScrollArea, QHBoxLayout
 
 class Ui_MainPages(object): 
     def setupUi(self, MainPages):
@@ -15,7 +15,7 @@ class Ui_MainPages(object):
         self.pages.setObjectName(u"pages")
         self.page_1 = QWidget()
         self.page_1.setObjectName(u"page_1")
-        self.page_1.setStyleSheet(u"font-size: 14pt")
+        # self.page_1.setStyleSheet(u"font-size: 14pt")
         self.page_1_layout = QVBoxLayout(self.page_1)
         self.page_1_layout.setSpacing(5)
         self.page_1_layout.setObjectName(u"page_1_layout")
@@ -45,28 +45,80 @@ class Ui_MainPages(object):
         self.label.setObjectName(u"label")
         self.label.setAlignment(Qt.AlignCenter)
         self.center_page_layout.addWidget(self.label)
-        
-        
-        #Page 1
-        self.chart_progress_1_layout = QVBoxLayout()
-        self.chart_progress_1_layout.setObjectName(u"chart_progress_1_layout")
-        self.page_1_layout.addLayout(self.chart_progress_1_layout)
+        # Page 1
+        #scroll
+        self.scroll_area = QScrollArea(self.page_1)
+        self.scroll_area.setObjectName(u"scroll_area")
+        self.scroll_area.setStyleSheet(u"background: transparent;")
+        self.scroll_area.setFrameShape(QFrame.NoFrame)
+        self.scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll_area.setWidgetResizable(True)
+        # Content
+        self.contents = QWidget()
+        self.contents.setObjectName(u"contents")
+        self.contents.setGeometry(QRect(0, 0, 840, 580))
+        self.contents.setStyleSheet(u"background: transparent;")
+        # Vertical inherit (Contents)
+        self.verticalLayout = QVBoxLayout(self.contents)
+        self.verticalLayout.setSpacing(15)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(5, 5, 5, 5)
+        # Row 1
+        self.row_1_1layout = QHBoxLayout()
+        self.row_1_1layout.setObjectName(u"row_1_1layout")
+        self.verticalLayout.addLayout(self.row_1_1layout)
+        # Row 2
+        self.row_2_1layout = QHBoxLayout()
+        self.row_2_1layout.setObjectName(u"row_2_1layout")
+        self.verticalLayout.addLayout(self.row_2_1layout)
+        # add contents to scroll
+        self.scroll_area.setWidget(self.contents)
+        # add scroll to page_1_layout
+        self.page_1_layout.addWidget(self.scroll_area)
+        # add page_1 to pages
         self.pages.addWidget(self.page_1)
-        
-        #Page 2
+        # Page 2
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        self.page_2.setStyleSheet(u"font-size: 14pt")
+        # self.page_2.setStyleSheet(u"font-size: 14pt")
         self.page_2_layout = QVBoxLayout(self.page_2)
         self.page_2_layout.setSpacing(5)
         self.page_2_layout.setObjectName(u"page_2_layout")
         self.page_2_layout.setContentsMargins(5, 5, 5, 5)
-        self.chart_progress_2_layout = QVBoxLayout()
-        self.chart_progress_2_layout.setObjectName(u"chart_progress_2_layout")
-        self.page_2_layout.addLayout(self.chart_progress_2_layout)
+        # scroll
+        self.scroll_area = QScrollArea(self.page_2)
+        self.scroll_area.setObjectName(u"scroll_area")
+        self.scroll_area.setStyleSheet(u"background: transparent;")
+        self.scroll_area.setFrameShape(QFrame.NoFrame)
+        self.scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll_area.setWidgetResizable(True)
+        # Content
+        self.contents = QWidget()
+        self.contents.setObjectName(u"contents")
+        self.contents.setGeometry(QRect(0, 0, 840, 580))
+        self.contents.setStyleSheet(u"background: transparent;")
+        # Vertical inherit (contents)
+        self.verticalLayout = QVBoxLayout(self.contents)
+        self.verticalLayout.setSpacing(15)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(5, 5, 5, 5)
+        # row 1
+        self.row_1_2layout = QHBoxLayout()
+        self.row_1_2layout.setObjectName(u"row_1_2layout")
+        self.verticalLayout.addLayout(self.row_1_2layout)
+        # row 2
+        self.row_2_2layout = QHBoxLayout()
+        self.row_2_2layout.setObjectName(u"row_2_2layout")
+        self.verticalLayout.addLayout(self.row_2_2layout)
+        # add contents to scroll
+        self.scroll_area.setWidget(self.contents)
+        # add scroll to page_1_layout
+        self.page_2_layout.addWidget(self.scroll_area)
+        # add page to pages
         self.pages.addWidget(self.page_2)
-        
-        #Page 3
+        # Page 3
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
         self.page_3.setStyleSheet(u"font-size: 14pt")
@@ -74,11 +126,37 @@ class Ui_MainPages(object):
         self.page_3_layout.setSpacing(5)
         self.page_3_layout.setObjectName(u"page_3_layout")
         self.page_3_layout.setContentsMargins(5, 5, 5, 5)
-        self.chart_progress_3_layout = QVBoxLayout()
-        self.chart_progress_3_layout.setObjectName(u"chart_progress_3_layout")
-        self.page_3_layout.addLayout(self.chart_progress_3_layout)
+        self.scroll_area = QScrollArea(self.page_3)
+        self.scroll_area.setObjectName(u"scroll_area")
+        self.scroll_area.setStyleSheet(u"background: transparent;")
+        self.scroll_area.setFrameShape(QFrame.NoFrame)
+        self.scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll_area.setWidgetResizable(True)
+        # Contents
+        self.contents = QWidget()
+        self.contents.setObjectName(u"contents")
+        self.contents.setGeometry(QRect(0, 0, 840, 580))
+        self.contents.setStyleSheet(u"background: transparent;")
+        # Vertical inherit (contents)
+        self.verticalLayout = QVBoxLayout(self.contents)
+        self.verticalLayout.setSpacing(15)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(5, 5, 5, 5)
+        # row 1
+        self.row_1_3layout = QHBoxLayout()
+        self.row_1_3layout.setObjectName(u"row_1_3layout")
+        self.verticalLayout.addLayout(self.row_1_3layout)
+        # row 2
+        self.row_2_3layout = QHBoxLayout()
+        self.row_2_3layout.setObjectName(u"row_2_3layout")
+        self.verticalLayout.addLayout(self.row_2_3layout)
+        # add contents to scroll
+        self.scroll_area.setWidget(self.contents)
+        # add scroll to page_1_layout
+        self.page_3_layout.addWidget(self.scroll_area)
+        # add page to pages
         self.pages.addWidget(self.page_3)
-        
         #Main Page
         self.main_pages_layout.addWidget(self.pages)
         self.retranslateUi(MainPages)

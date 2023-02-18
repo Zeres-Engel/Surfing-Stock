@@ -19,7 +19,7 @@ class UI_MainWindow(object):
         self.themes = themes.items
         parent.resize(self.settings["startup_size"][0], self.settings["startup_size"][1])
         parent.setMinimumSize(self.settings["minimum_size"][0], self.settings["minimum_size"][1])
-        self.central_widget = QWidget()
+        self.central_widget = QWidget() 
         self.central_widget.setStyleSheet(f'''
             font: {self.settings["font"]["text_size"]}pt "{self.settings["font"]["family"]}";
             color: {self.themes["app_color"]["text_foreground"]};
@@ -102,7 +102,7 @@ class UI_MainWindow(object):
         self.title_bar_layout.setContentsMargins(0,0,0,0)
         self.title_bar = PyTitleBar(
             parent,
-            logo_width = 100,
+            logo_width = 166,
             app_parent = self.central_widget,
             logo_image = "logo_top_100x22.svg",
             bg_color = self.themes["app_color"]["bg_two"],

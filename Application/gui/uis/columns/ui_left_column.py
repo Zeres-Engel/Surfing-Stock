@@ -14,7 +14,7 @@ class Ui_LeftColumn(object):
         self.menus = QStackedWidget(LeftColumn)
         self.menus.setObjectName(u"menus")
         self.menu_1 = QWidget()
-        self.menu_1.setObjectName(u"menu_1")
+        self.menu_1.setObjectName(u"menu_1") 
         self.verticalLayout = QVBoxLayout(self.menu_1)
         self.verticalLayout.setSpacing(5)
         self.verticalLayout.setObjectName(u"verticalLayout")

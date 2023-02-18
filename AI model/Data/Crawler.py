@@ -12,10 +12,10 @@ def crawl(company):
     start = "2000-02-15" #Happy new year
     end = today = dt.datetime.now().strftime("%Y-%m-%d") 
     df = vnstock.stock_historical_data(symbol = company, start_date = start, end_date = end)
-    df.to_csv(f"raw\{company}.csv",encoding = "utf-8")
+    df.to_csv(f"./data/raw/{company}.csv",encoding = "utf-8")
 
 if __name__ == "__main__":
-    fhandle = open("companylist.txt","r")
+    fhandle = open("./data/companylist.txt","r")
     for line in fhandle.readlines():
         company = line.strip()
         print(f"{company}'s stock", end=' ')

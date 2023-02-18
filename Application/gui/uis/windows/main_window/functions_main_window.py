@@ -13,7 +13,7 @@ class MainFunctions():
         menu,
         title,
         icon_path
-    ):
+    ): 
         self.ui.left_column.menus.menus.setCurrentWidget(menu)
         self.ui.left_column.title_label.setText(title)
         self.ui.left_column.icon.set_icon(icon_path)

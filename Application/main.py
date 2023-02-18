@@ -10,23 +10,21 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = UI_MainWindow()
-        self.ui.setup_ui(self)
+        self.ui.setup_ui(self) 
         settings = Settings()
         self.settings = settings.items
         self.hide_grips = True 
         SetupMainWindow.setup_gui(self)
         self.show()
     def btn_clicked(self):
-        btn = SetupMainWindow.setup_btns(self)
-        if btn.objectName() != "btn_settings":
-            self.ui.left_menu.deselect_all_tab()     
-        if btn.objectName() == "btn_home":
+        btn = SetupMainWindow.setup_btns(self)   
+        if btn.objectName() == "btn_FPT":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_1)
-        if btn.objectName() == "btn_widgets":
+        if btn.objectName() == "btn_CTG":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_2)
-        if btn.objectName() == "btn_add_user":
+        if btn.objectName() == "btn_LCG":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_3)
         print(f"Button {btn.objectName()}, clicked!")
