@@ -16,7 +16,7 @@ from keras.layers import Dense, Dropout, LSTM
 class Functions:
     def __init__(self):
         model = Sequential()
-        cells = 128
+        cells = 248
         model.add(LSTM(units = cells, activation='tanh', recurrent_activation='sigmoid', input_shape = (7, 31))) #input traning date and predicting date 
         model.add(Dropout(0.1))
         model.add(Dense(units = 1))  
@@ -164,7 +164,7 @@ class Functions:
         for i in range(pre_day, len(df)):
             x_total.append(scaled_data_x[i - pre_day : i])
             y_total.append(scaled_data_y[i])
-        test_size = 60
+        test_size = 365
         x_train = np.array(x_total[:len(x_total)-test_size]) 
         y_train = np.array(y_total[:len(y_total)-test_size])
         x_test = np.array(x_total[len(x_total)-test_size:]) 
@@ -189,4 +189,5 @@ class Functions:
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         ax.tick_params(colors=font_color)
+        ax.set_ylim(0, max(np.max(predict_prices)*1.2, np.max(real_prices[:, 0])*1.2))
         plt.savefig(f"./gui/images/svg_images/{company}eval.svg", format="svg", transparent=True)
