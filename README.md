@@ -11,7 +11,7 @@ Welcome to Surfing Stock, an application built using the [QT](https://en.wikiped
 With its user-friendly interface, Surfing Stock is easy to use and provides users with reliable and insightful predictions. By utilizing the power of deep learning, Surfing Stock can help users make informed decisions in their investment strategies.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/OS-Windows-blue?style=flat&logo=" />
+  <img src="https://img.shields.io/badge/OS-Windows-red?style=flat&logo=" />
   <img src="https://img.shields.io/badge/Python-v3.10.9-blue?style=flat&logo=python" />
   <img src="https://img.shields.io/badge/Neural%20Network-LSTM-yellow?style=flat&logo=tensorflow" />
   <img src="https://img.shields.io/badge/QT-6.3.2-green?style=flat&logo=qt" />
