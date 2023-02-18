@@ -41,13 +41,21 @@ The data is collected using the VNStock API, and the following data variables ar
 - Volume
 
 ### Data Preprocessing
-Data preprocessing is performed to extract 31 feature columns from the raw data. These features are then used to build the LSTM model.
+Data preprocessing is performed to extract 31 feature columns from the raw data. These features are then used to build the LSTM model. 
+- Volume
+- Candlestick patterns
+- Median prices
+- Simple moving averages
+- Skewness
+- Kurtosis
+-Technical indicators (RSI, MACD, etc.)
+By extracting and using these features, we can better capture the patterns and trends in the stock price data and improve the accuracy of our predictions.
 
 ### Layers (LSTM)
 The LSTM model is used to predict the stock price using the 31 extracted feature columns.
 
 ### Optimizer (Adam)
-The Adam optimizer is used to optimize the LSTM model.
+Using the Adam optimizer for stock price prediction models has several benefits, including stability, adaptiveness, and efficiency. It helps the model converge faster, achieve better results, and optimize more efficiently than other optimizers such as SGD or Adagrad.
 
 ## Deploying the Product
 ### User Interface
