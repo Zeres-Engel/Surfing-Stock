@@ -14,7 +14,7 @@ With its user-friendly interface, Surfing Stock is easy to use and provides user
 ![Python](https://img.shields.io/badge/Python-v3.10.9-blue?style=flat&logo=python)
 ![LSTM](https://img.shields.io/badge/Neural%20Network-LSTM-yellow?style=flat&logo=tensorflow)
 ![QT](https://img.shields.io/badge/QT-6.3.2-blue?style=flat&logo=qt)
-[![GitHub followers](https://img.shields.io/github/followers/{username}.svg?style=social&label=Follow)](https://github.com/{Zeres-Englel})
+[![GitHub followers](https://img.shields.io/github/followers/{username}.svg?style=social&label=Follow)](https://github.com/Zeres-Englel)
 # Table of Content
 - [Overview](#overview)
 - [Building the Model](#building-the-model)
@@ -106,7 +106,7 @@ Closing price chart:
 <img src="images/overview.png" width="800">
 
 Model quality rating chart:
-<img src="evaluate/overview.png" width="800">
+<img src="images/evaluate.png" width="800">
 
 ### Configuration
 
