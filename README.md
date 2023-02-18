@@ -14,7 +14,7 @@ With its user-friendly interface, Surfing Stock is easy to use and provides user
 ![Python](https://img.shields.io/badge/Python-v3.10.9-blue?style=flat&logo=python)
 ![LSTM](https://img.shields.io/badge/Neural%20Network-LSTM-yellow?style=flat&logo=tensorflow)
 ![QT](https://img.shields.io/badge/QT-6.3.2-blue?style=flat&logo=qt)
-[![GitHub followers](https://img.shields.io/github/followers/{username}.svg?style=social&label=Follow)](https://github.com/Zeres-Engel)
+[![GitHub followers](https://img.shields.io/github/followers/Zeres-Engel.svg?style=social&label=Follow)](https://github.com/Zeres-Engel)
 # Table of Content
 - [Overview](#overview)
 - [Building the Model](#building-the-model)
@@ -103,9 +103,11 @@ Overall, the Surfing Stock app provides a user-friendly and efficient way for us
 The product has a user interface that displays the predicted stock price using a chart. The chart is designed to be easy to read and understand.
 
 Closing price chart:
+
 <img src="images/overview.png" width="800">
 
 Model quality rating chart:
+
 <img src="images/evaluate.png" width="800">
 
 ### Configuration
