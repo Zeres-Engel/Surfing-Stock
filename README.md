@@ -2,7 +2,7 @@
 
 <div>
   <p align="center">
-    <img src="Images/logo.svg" width="800"> 
+    <img src="images/logo.svg" width="800"> 
   </p>
 </div>
 
@@ -30,7 +30,7 @@ With its user-friendly interface, Surfing Stock is easy to use and provides user
 ## Overview
 The app is designed to automatically scrape stock data using the VNStock API and predict the stock price for the following day. The app displays the predicted stock price using a chart.
 
-<img src="Images/predict.png" width="800">
+<img src="images/predict.png" width="800">
 
 ## Building the Model
 ### Data Understanding
