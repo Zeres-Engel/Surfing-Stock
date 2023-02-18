@@ -10,11 +10,14 @@ Welcome to Surfing Stock, an application built using the [QT](https://en.wikiped
 
 With its user-friendly interface, Surfing Stock is easy to use and provides users with reliable and insightful predictions. By utilizing the power of deep learning, Surfing Stock can help users make informed decisions in their investment strategies.
 
-![OS](https://img.shields.io/badge/OS-Windows-blue?style=flat&logo=)
-![Python](https://img.shields.io/badge/Python-v3.10.9-blue?style=flat&logo=python)
-![LSTM](https://img.shields.io/badge/Neural%20Network-LSTM-yellow?style=flat&logo=tensorflow)
-![QT](https://img.shields.io/badge/QT-6.3.2-blue?style=flat&logo=qt)
-[![GitHub followers](https://img.shields.io/github/followers/Zeres-Engel.svg?style=social&label=Follow)](https://github.com/Zeres-Engel)
+<p align="center">
+  <img src="https://img.shields.io/badge/OS-Windows-blue?style=flat&logo=" />
+  <img src="https://img.shields.io/badge/Python-v3.10.9-blue?style=flat&logo=python" />
+  <img src="https://img.shields.io/badge/Neural%20Network-LSTM-yellow?style=flat&logo=tensorflow" />
+  <img src="https://img.shields.io/badge/QT-6.3.2-blue?style=flat&logo=qt" />
+  <a href="https://github.com/Zeres-Engel"><img src="https://img.shields.io/github/followers/Zeres-Engel.svg?style=social&label=Follow" /></a>
+</p>
+
 # Table of Content
 - [Overview](#overview)
 - [Building the Model](#building-the-model)
