@@ -12,7 +12,7 @@ With its user-friendly interface, Surfing Stock is easy to use and provides user
 
 <p align="center">
   <img src="https://img.shields.io/badge/OS-Windows-red?style=flat&logo=" />
-  <img src="https://img.shields.io/badge/Python-v3.10.9-blue?style=flat&logo=python" />
+  <img src="https://img.shields.io/badge/Python-v3.10.10-blue?style=flat&logo=python" />
   <img src="https://img.shields.io/badge/Neural%20Network-LSTM-yellow?style=flat&logo=tensorflow" />
   <img src="https://img.shields.io/badge/QT-6.3.2-green?style=flat&logo=qt" />
   <a href="https://github.com/Zeres-Engel"><img src="https://img.shields.io/github/followers/Zeres-Engel.svg?style=social&label=Follow" /></a>
