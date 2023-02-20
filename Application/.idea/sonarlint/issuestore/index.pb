@@ -1,8 +1,0 @@
-
-:
-
-qt_core.py,3\d\3db4abc151297efb5a409b03c1c190f603fe4d1d
-@
-requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
-7
-main.py,f\1\f1bdda93d9a278e358509d498e17d97764c1fb29
