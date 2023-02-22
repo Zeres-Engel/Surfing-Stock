@@ -128,7 +128,6 @@ class SetupMainWindow:
         self.ui.load_pages.row_2_1layout.addWidget(self.chart_progress_2, Qt.AlignCenter | Qt.AlignCenter)
         
         # PAGE 2
-        # Functions.SetLineGraph(self,'FPT')
         self.chart_progress_1 = QSvgWidget(Functions.set_svg_image("CTG.svg"))
         self.chart_progress_1.setFixedSize(1200, 600)
         self.ui.load_pages.row_1_2layout.addWidget(self.chart_progress_1, Qt.AlignCenter | Qt.AlignCenter)
@@ -138,7 +137,6 @@ class SetupMainWindow:
         self.ui.load_pages.row_2_2layout.addWidget(self.chart_progress_2, Qt.AlignCenter | Qt.AlignCenter)
         
         # PAGE 3
-        # Functions.SetLineGraph(self,'FPT')
         self.chart_progress_1 = QSvgWidget(Functions.set_svg_image("LCG.svg"))
         self.chart_progress_1.setFixedSize(1200, 600)
         self.ui.load_pages.row_1_3layout.addWidget(self.chart_progress_1, Qt.AlignCenter | Qt.AlignCenter)

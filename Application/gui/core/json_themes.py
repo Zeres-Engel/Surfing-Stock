@@ -4,20 +4,6 @@ from gui.core.json_settings import Settings
 class Themes(object):
     setup_settings = Settings()
     _settings = setup_settings.items
-    json_file = f"gui/themes/{_settings['theme_name']}.json"
-    app_path = os.path.abspath(os.getcwd())
-    settings_path = os.path.normpath(os.path.join(app_path, json_file))
-    if not os.path.isfile(settings_path):
-        print(f"WARNING: \"gui/themes/{_settings['theme_name']}.json\" not found! check in the folder {settings_path}")
     def __init__(self):
         super(Themes, self).__init__()
-        self.items = {}
-        self.deserialize()
-    def serialize(self):
-        with open(self.settings_path, "w", encoding='utf-8') as write:
-            json.dump(self.items, write, indent=4)
-    def deserialize(self):
-        # READ JSON FILE
-        with open(self.settings_path, "r", encoding='utf-8') as reader:
-            settings = json.loads(reader.read())
-            self.items = settings
+        self.items = {'theme_name': 'Default', 'app_color': {'dark_one': '#1b1e23', 'dark_two': '#1e2229', 'dark_three': '#21252d', 'dark_four': '#272c36', 'bg_one': '#2c313c', 'bg_two': '#343b48', 'bg_three': '#3c4454', 'icon_color': '#c3ccdf', 'icon_hover': '#dce1ec', 'icon_pressed': '#6c99f4', 'icon_active': '#f5f6f9', 'context_color': '#568af2', 'context_hover': '#6c99f4', 'context_pressed': '#3f6fd1', 'text_title': '#dce1ec', 'text_foreground': '#8a95aa', 'text_description': '#4f5b6e', 'text_active': '#dce1ec', 'white': '#f5f6f9', 'pink': '#ff007f', 'green': '#00ff7f', 'red': '#ff5555', 'yellow': '#f1fa8c'}}

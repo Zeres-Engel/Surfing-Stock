@@ -15,7 +15,6 @@ class Ui_MainPages(object):
         self.pages.setObjectName(u"pages")
         self.page_1 = QWidget()
         self.page_1.setObjectName(u"page_1")
-        # self.page_1.setStyleSheet(u"font-size: 14pt")
         self.page_1_layout = QVBoxLayout(self.page_1)
         self.page_1_layout.setSpacing(5)
         self.page_1_layout.setObjectName(u"page_1_layout")
@@ -81,7 +80,6 @@ class Ui_MainPages(object):
         # Page 2
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        # self.page_2.setStyleSheet(u"font-size: 14pt")
         self.page_2_layout = QVBoxLayout(self.page_2)
         self.page_2_layout.setSpacing(5)
         self.page_2_layout.setObjectName(u"page_2_layout")
@@ -121,7 +119,6 @@ class Ui_MainPages(object):
         # Page 3
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
-        self.page_3.setStyleSheet(u"font-size: 14pt")
         self.page_3_layout = QVBoxLayout(self.page_3)
         self.page_3_layout.setSpacing(5)
         self.page_3_layout.setObjectName(u"page_3_layout")

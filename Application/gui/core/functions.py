@@ -21,7 +21,6 @@ class Functions:
         model.add(Dropout(0.1))
         model.add(Dense(units = 1))  
         self.model = model
-        
     def set_svg_icon(icon_name):
         app_path = os.path.abspath(os.getcwd())
         folder = "./gui/images/svg_icons/"
@@ -34,25 +33,17 @@ class Functions:
         path = os.path.join(app_path, folder)
         image = os.path.normpath(os.path.join(path, icon_name))
         return image
-    def set_image(image_name):
-        app_path = os.path.abspath(os.getcwd())
-        folder = "./gui/images/images/"
-        path = os.path.join(app_path, folder)
-        image = os.path.normpath(os.path.join(path, image_name))
-        return image
     def Crawler():
-        fhandle = open("./gui/data/companylist.txt","r")
-        for line in fhandle.readlines():
-            company = line.strip()
+        companies = ["FPT", "CTG", "LCG"]
+        for company in companies:
             start = "2000-02-15" 
             end = today = dt.datetime.now().strftime("%Y-%m-%d") 
             df = vnstock.stock_historical_data(symbol = company, start_date = start, end_date = end)
-            df.to_csv(f"./gui/data/raw/{company}.csv",encoding = "utf-8")
+            df.to_csv(f"./data/raw/{company}.csv",encoding = "utf-8")
     def Preprocessing():
-        fhandle = open("./gui/data/companylist.txt","r")
-        for line in fhandle.readlines():
-            company = line.strip()
-            df = pd.read_csv(f"./gui/data/raw/{company}.csv", delimiter = ",", encoding="utf-8")
+        companies = ["FPT", "CTG", "LCG"]
+        for company in companies:
+            df = pd.read_csv(f"./data/raw/{company}.csv", delimiter = ",", encoding="utf-8")
             df['H-L'] = df['High'] - df['Low']
             df['O-C'] = df['Open'] - df['Close']
             MA1 = 7
@@ -90,10 +81,10 @@ class Functions:
             df[f'Kur_{MA4}'] = df['Close'].rolling(window = MA4).kurt()
             df[df.replace([np.inf, -np.inf], np.nan).notnull().all(axis = 1)]
             df.dropna(inplace = True)
-            df.to_csv(f"./gui/data/prepaired/{company}pre.csv", encoding = "utf-8")
+            df.to_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
         
     def SetLineGraph(self,company):
-        df = pd.read_csv(f"./gui/data/prepaired/{company}pre.csv", encoding = "utf-8")
+        df = pd.read_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
         MA1 = 7
         MA2 = 14
         MA3 = 21
@@ -104,7 +95,7 @@ class Functions:
         cols_y = ['Close']
         scaled_data_x = scaler_x.fit_transform(df[cols_x].values.reshape(-1, len(cols_x))) 
         scaled_data_y = scaler_y.fit_transform(df[cols_y].values.reshape(-1, len(cols_y)))
-        self.model = load_model(f"./gui/model/{company}.h5")
+        self.model = load_model(f"./model/{company}.h5")
         real_prices = df.loc[len(df)-7:, ['Close', 'Volume']]
         real_prices = np.array(real_prices)
         predict_prices = real_prices[:, 0]
@@ -117,7 +108,7 @@ class Functions:
         predict_prices = np.append(predict_prices, prediction)
         font = "Segoe UI"  
         font_color = "gray"  
-        fig, ax = plt.subplots(figsize=(10, 5))
+        fig, ax = plt.subplots(figsize=(12, 6))
         ax.grid(True, linewidth=0.5, color='gray', zorder=1)
         if predict_prices[6] < predict_prices[7]:
             ax.plot(predict_prices, color="#58D68D", label=f"predict", zorder=2)
@@ -147,7 +138,7 @@ class Functions:
         plt.savefig(f"./gui/images/svg_images/{company}.svg", format="svg", transparent=True)
     
     def Evaluation(self, company):
-        df = pd.read_csv(f"./gui/data/prepaired/{company}pre.csv", encoding = "utf-8")
+        df = pd.read_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
         MA1 = 7
         MA2 = 14
         MA3 = 21
@@ -159,8 +150,8 @@ class Functions:
         scaled_data_x = scaler_x.fit_transform(df[cols_x].values.reshape(-1, len(cols_x))) 
         scaled_data_y = scaler_y.fit_transform(df[cols_y].values.reshape(-1, len(cols_y)))
         pre_day = 7
-        x_total = [] # Variables today
-        y_total = [] #Close price tomorrow
+        x_total = [] 
+        y_total = []
         for i in range(pre_day, len(df)):
             x_total.append(scaled_data_x[i - pre_day : i])
             y_total.append(scaled_data_y[i])
@@ -175,7 +166,7 @@ class Functions:
         predict_prices = scaler_y.inverse_transform(predict_prices)
         font = "Segoe UI"  
         font_color = "gray"  
-        fig, ax = plt.subplots(figsize=(10, 5))
+        fig, ax = plt.subplots(figsize=(12, 6))
         ax.grid(True, linewidth=0.5, color='gray', zorder=1)
         ax.plot(real_prices[:, 0], color="#FFCC33", label=f"real", zorder=2)
         ax.plot(predict_prices, color="#58D68D", label=f"predict", zorder=2)

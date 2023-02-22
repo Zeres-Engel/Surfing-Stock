@@ -31,18 +31,15 @@ class MainWindow(QMainWindow):
         if btn.objectName() == "btn_LCG":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_3)
-        print(f"Button {btn.objectName()}, clicked!")
 
     def btn_released(self):
         btn = SetupMainWindow.setup_btns(self)
-        print(f"Button {btn.objectName()}, released!")
 
     def resizeEvent(self, event):
         SetupMainWindow.resize_grips(self)
 
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
