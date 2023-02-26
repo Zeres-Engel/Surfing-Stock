@@ -1,5 +1,7 @@
 import os
-from qt_core import *
+from PySide6.QtCore import Qt, QRect, QEvent, QPoint
+from PySide6.QtGui import QPainter, QColor, QPixmap
+from PySide6.QtWidgets import QPushButton, QLabel, QGraphicsDropShadowEffect
 from gui.core.functions import *
 class PyLeftMenuButton(QPushButton):
     def __init__(

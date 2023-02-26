@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import datetime as dt
 
-#API
 import vnstock
 from vnstock import *
 
@@ -21,29 +20,72 @@ class Functions:
         model.add(Dropout(0.1))
         model.add(Dense(units = 1))  
         self.model = model
+        
     def set_svg_icon(icon_name):
         app_path = os.path.abspath(os.getcwd())
         folder = "./gui/images/svg_icons/"
         path = os.path.join(app_path, folder)
         icon = os.path.normpath(os.path.join(path, icon_name))
         return icon
+    
     def set_svg_image(icon_name):
         app_path = os.path.abspath(os.getcwd())
         folder = "./gui/images/svg_images/"
         path = os.path.join(app_path, folder)
         image = os.path.normpath(os.path.join(path, icon_name))
         return image
-    def Crawler():
+    
+    def Crawlagain(self, company):
+        df = pd.read_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
+        end = dt.datetime.now().strftime("%Y-%m-%d") 
+        start = (dt.datetime.now() - dt.timedelta(days = 3)).strftime("%Y-%m-%d") 
+        add = vnstock.stock_historical_data(symbol = company, start_date = start, end_date = end)
+        if (add['Open'][0] - add['Close'][0]) != df['O-C'][len(df) -1]:
+            add['H-L'] = df['High'] - df['Low']
+            add['O-C'] = df['Open'] - df['Close']
+            MA1 = 7
+            MA2 = 14
+            MA3 = 21
+            MA4 = 28
+            add['AR'] = add['H-L']/add['O-C']
+            add[f'ME_{MA1}'] = add['Close'].rolling(window = MA1).median()
+            add[f'ME_{MA2}'] = add['Close'].rolling(window = MA2).median()
+            add[f'ME_{MA3}'] = add['Close'].rolling(window = MA3).median()
+            add[f'ME_{MA4}'] = add['Close'].rolling(window = MA4).median()
+            add[f'RANK_{MA1}'] = add['Close'].rolling(window = MA1).rank()
+            add[f'RANK_{MA2}'] = add['Close'].rolling(window = MA2).rank()
+            add[f'RANK_{MA3}'] = add['Close'].rolling(window = MA3).rank()
+            add[f'RANK_{MA4}'] = add['Close'].rolling(window = MA4).rank()
+            add[f'VAR_{MA1}'] = add['Close'].rolling(window = MA1).var()
+            add[f'VAR_{MA2}'] = add['Close'].rolling(window = MA2).var()
+            add[f'VAR_{MA3}'] = add['Close'].rolling(window = MA3).var()
+            add[f'VAR_{MA4}'] = add['Close'].rolling(window = MA4).var()
+            add[f'SMA_{MA1}'] = add['Close'].rolling(window = MA1).mean()
+            add[f'SMA_{MA2}'] = add['Close'].rolling(window = MA2).mean()
+            add[f'SMA_{MA3}'] = add['Close'].rolling(window = MA3).mean()
+            add[f'SMA_{MA4}'] = add['Close'].rolling(window = MA4).mean()
+            add[f'SD_{MA1}'] = add['Close'].rolling(window = MA1).std()
+            add[f'SD_{MA2}'] = add['Close'].rolling(window = MA2).std()
+            add[f'SD_{MA3}'] = add['Close'].rolling(window = MA3).std()
+            add[f'SD_{MA4}'] = add['Close'].rolling(window = MA4).std()
+            add[f'Ske_{MA1}'] = add['Close'].rolling(window = MA1).skew()
+            add[f'Ske_{MA2}'] = add['Close'].rolling(window = MA2).skew()
+            add[f'Ske_{MA3}'] = add['Close'].rolling(window = MA3).skew()
+            add[f'Ske_{MA4}'] = add['Close'].rolling(window = MA4).skew()
+            add[f'Kur_{MA1}'] = add['Close'].rolling(window = MA1).kurt()
+            add[f'Kur_{MA2}'] = add['Close'].rolling(window = MA2).kurt()
+            add[f'Kur_{MA3}'] = add['Close'].rolling(window = MA3).kurt()
+            add[f'Kur_{MA4}'] = add['Close'].rolling(window = MA4).kurt()
+            add.dropna(inplace = True)
+            df = pd.concat([df,add])
+            Functions.SetLineGraph(self, df,company)
+    
+    def CrawlCompanies():
         companies = ["FPT", "CTG", "LCG"]
+        end = dt.datetime.now().strftime("%Y-%m-%d") 
+        start = (dt.datetime.now() - dt.timedelta(days=180)).strftime("%Y-%m-%d") 
         for company in companies:
-            start = "2000-02-15" 
-            end = today = dt.datetime.now().strftime("%Y-%m-%d") 
             df = vnstock.stock_historical_data(symbol = company, start_date = start, end_date = end)
-            df.to_csv(f"./data/raw/{company}.csv",encoding = "utf-8")
-    def Preprocessing():
-        companies = ["FPT", "CTG", "LCG"]
-        for company in companies:
-            df = pd.read_csv(f"./data/raw/{company}.csv", delimiter = ",", encoding="utf-8")
             df['H-L'] = df['High'] - df['Low']
             df['O-C'] = df['Open'] - df['Close']
             MA1 = 7
@@ -79,12 +121,10 @@ class Functions:
             df[f'Kur_{MA2}'] = df['Close'].rolling(window = MA2).kurt()
             df[f'Kur_{MA3}'] = df['Close'].rolling(window = MA3).kurt()
             df[f'Kur_{MA4}'] = df['Close'].rolling(window = MA4).kurt()
-            df[df.replace([np.inf, -np.inf], np.nan).notnull().all(axis = 1)]
             df.dropna(inplace = True)
             df.to_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
         
-    def SetLineGraph(self,company):
-        df = pd.read_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
+    def SetLineGraph(self, df, company):
         MA1 = 7
         MA2 = 14
         MA3 = 21
@@ -137,8 +177,7 @@ class Functions:
         ax.set_ylim(0, np.max(predict_prices)*1.2)
         plt.savefig(f"./gui/images/svg_images/{company}.svg", format="svg", transparent=True)
     
-    def Evaluation(self, company):
-        df = pd.read_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
+    def Evaluation(self, df, company):
         MA1 = 7
         MA2 = 14
         MA3 = 21
@@ -155,7 +194,7 @@ class Functions:
         for i in range(pre_day, len(df)):
             x_total.append(scaled_data_x[i - pre_day : i])
             y_total.append(scaled_data_y[i])
-        test_size = 365
+        test_size = 60
         x_train = np.array(x_total[:len(x_total)-test_size]) 
         y_train = np.array(y_total[:len(y_total)-test_size])
         x_test = np.array(x_total[len(x_total)-test_size:]) 

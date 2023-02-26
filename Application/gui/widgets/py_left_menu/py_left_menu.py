@@ -1,4 +1,5 @@
-from qt_core import *
+from PySide6.QtCore import Signal, QPropertyAnimation, QEasingCurve, Qt
+from PySide6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QFrame
 from . py_left_menu_button import PyLeftMenuButton
 from . py_div import PyDiv
 from gui.core.functions import *

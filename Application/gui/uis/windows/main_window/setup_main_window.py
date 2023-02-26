@@ -1,5 +1,6 @@
 import sys
 import os
+import pandas as pd
 from gui.widgets.py_table_widget.py_table_widget import PyTableWidget
 from . functions_main_window import *
 from PySide6.QtGui import QIcon, Qt 
@@ -109,16 +110,20 @@ class SetupMainWindow:
         self.left_btn_3 = QPushButton("Default QPushButton")
         self.left_btn_3.setMaximumHeight(40)
         self.ui.left_column.menus.btn_3_layout.addWidget(self.left_btn_3)
-        Functions.Crawler()
-        Functions.Preprocessing()
-        Functions.SetLineGraph(self,'FPT')
-        Functions.Evaluation(self,'FPT')
-        Functions.SetLineGraph(self,'CTG')
-        Functions.Evaluation(self,'CTG')
-        Functions.SetLineGraph(self,'LCG')
-        Functions.Evaluation(self,'LCG')
+        Functions.CrawlCompanies()
         
-         # PAGE 1
+        FPT = pd.read_csv(f"./data/prepaired/FPTpre.csv", encoding = "utf-8")
+        Functions.SetLineGraph(self,FPT,'FPT')
+        Functions.Evaluation(self,FPT,'FPT')
+        
+        CTG = pd.read_csv(f"./data/prepaired/CTGpre.csv", encoding = "utf-8")
+        Functions.SetLineGraph(self,CTG,'CTG')
+        Functions.Evaluation(self,CTG,'CTG')
+        
+        LCG = pd.read_csv(f"./data/prepaired/LCGpre.csv", encoding = "utf-8")
+        Functions.SetLineGraph(self,LCG,'LCG')
+        Functions.Evaluation(self,LCG,'LCG')   
+        # PAGE 1
         self.chart_progress_1 = QSvgWidget(Functions.set_svg_image("FPT.svg"))
         self.chart_progress_1.setFixedSize(1200, 600)
         self.ui.load_pages.row_1_1layout.addWidget(self.chart_progress_1, Qt.AlignCenter | Qt.AlignCenter)

@@ -1,4 +1,6 @@
-from qt_core import *
+from PySide6.QtCore import QRect, Qt, QEvent, QPoint
+from PySide6.QtGui import QPainter, QColor, QBrush, QPixmap
+from PySide6.QtWidgets import QPushButton, QLabel, QGraphicsDropShadowEffect
 class PyTitleButton(QPushButton):
     def __init__(
         self,

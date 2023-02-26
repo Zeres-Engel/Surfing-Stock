@@ -1,4 +1,6 @@
-from qt_core import *
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QPixmap, QPainter
+from PySide6.QtWidgets import QVBoxLayout, QWidget, QLabel
 class PyIcon(QWidget):
     def __init__(
         self,

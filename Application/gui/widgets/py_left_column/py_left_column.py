@@ -1,5 +1,7 @@
 from . py_left_button import *
 from . py_icon import *
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout
 from gui.uis.columns.ui_left_column import Ui_LeftColumn
 
 class PyLeftColumn(QWidget):

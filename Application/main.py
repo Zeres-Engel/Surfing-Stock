@@ -1,6 +1,7 @@
 import os
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMainWindow, QApplication
+from gui.core.functions import Functions
 from gui.core.json_settings import Settings
 from gui.uis.windows.main_window import *
 from gui.widgets import *
@@ -22,15 +23,21 @@ class MainWindow(QMainWindow):
 
     def btn_clicked(self):
         btn = SetupMainWindow.setup_btns(self)
+        
         if btn.objectName() == "btn_FPT":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_1)
+            Functions.Crawlagain(self, 'FPT')
+            
         if btn.objectName() == "btn_CTG":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_2)
+            Functions.Crawlagain(self, 'CTG')
+            
         if btn.objectName() == "btn_LCG":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_3)
+            Functions.Crawlagain(self, 'LCG')
 
     def btn_released(self):
         btn = SetupMainWindow.setup_btns(self)
