@@ -76,7 +76,7 @@ The LSTM model is used to predict the stock price using the 31 extracted feature
 
 ```python
   model = Sequential()
-  cells = 176
+  cells = 270
   model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid', input_shape = (x_train.shape[1], x_train.shape[2])))
   model.add(Dropout(0.1))
   model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
