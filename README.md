@@ -99,7 +99,7 @@ history = model.fit(x_train, y_train, epochs= 10, batch_size= 1, use_multiproces
 
 ## Deploying the Product
 
-To use the Surfing Stock app, users simply need to download and install the required libraries and run the main.py file or         https://drive.google.com/file/d/1OmZuhPzRKWvL9k_hTiSArxFXpCDq9sx-/view . The app will automatically scrape stock data and use the saved LSTM model to make predictions for the following day's stock price.
+To use the Surfing Stock app, users simply need to download and install the required libraries and run the main.py file or         https://drive.google.com/file/d/1OmZuhPzRKWvL9k_hTiSArxFXpCDq9sx- . The app will automatically scrape stock data and use the saved LSTM model to make predictions for the following day's stock price.
 
 The predicted stock price is displayed on the app's user interface, along with a chart that shows the historical stock prices and the predicted stock price for the next day.
 
@@ -121,4 +121,4 @@ Model quality rating chart:
 
 ### Configuration
 
-The Surfing Stock app has a user-friendly interface that displays predicted stock prices using a chart. To use the app, users need to install the required libraries, which are listed in the requirements.txt file.
+The Surfing Stock app has a user-friendly interface that displays predicted stock prices using a chart. To run this code, programers need to install the required libraries, which are listed in the requirements.txt file.
