@@ -41,76 +41,79 @@ class Functions:
         image = os.path.normpath(os.path.join(path, icon_name))
         return image
     
-    def Crawlagain(self, company):
-        df = pd.read_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
+    def Crawlagain(self):
+        companies = ["FPT", "CTG", "LCG"]
         end = dt.datetime.now().strftime("%Y-%m-%d") 
         start = (dt.datetime.now() - dt.timedelta(days = 3)).strftime("%Y-%m-%d") 
-        add = vnstock.stock_historical_data(symbol = company, start_date = start, end_date = end)
-        if (add['Open'][0] - add['Close'][0]) != df['O-C'][len(df) -1]:
-            #Candlesticks
-            add['H-L'] = add['High'] - add['Low']
-            
-            add['O-C'] = df['Open'] - df['Close']
-            #Labels
-            MA1 = 5
-            MA2 = 10
-            MA3 = 15
-            MA4 = 20
-            MA5 = 25
-            MA6 = 30
-            #Median
-            add[f'ME_{MA1}'] = add['Close'].rolling(window = MA1).median()
-            add[f'ME_{MA2}'] = add['Close'].rolling(window = MA2).median()
-            add[f'ME_{MA3}'] = add['Close'].rolling(window = MA3).median()
-            add[f'ME_{MA4}'] = add['Close'].rolling(window = MA4).median()
-            add[f'ME_{MA5}'] = add['Close'].rolling(window = MA5).median()
-            add[f'ME_{MA6}'] = add['Close'].rolling(window = MA6).median()
-            #Rank 
-            add[f'RANK_{MA1}'] = add['Close'].rolling(window = MA1).rank()
-            add[f'RANK_{MA2}'] = add['Close'].rolling(window = MA2).rank()
-            add[f'RANK_{MA3}'] = add['Close'].rolling(window = MA3).rank()
-            add[f'RANK_{MA4}'] = add['Close'].rolling(window = MA4).rank()
-            add[f'RANK_{MA5}'] = add['Close'].rolling(window = MA5).rank()
-            add[f'RANK_{MA6}'] = add['Close'].rolling(window = MA6).rank()
-            #Var
-            add[f'VAR_{MA1}'] = add['Close'].rolling(window = MA1).var()
-            add[f'VAR_{MA2}'] = add['Close'].rolling(window = MA2).var()
-            add[f'VAR_{MA3}'] = add['Close'].rolling(window = MA3).var()
-            add[f'VAR_{MA4}'] = add['Close'].rolling(window = MA4).var()
-            add[f'VAR_{MA5}'] = add['Close'].rolling(window = MA5).var()
-            add[f'VAR_{MA6}'] = add['Close'].rolling(window = MA6).var()
-            #Simple moving average
-            add[f'SMA_{MA1}'] = add['Close'].rolling(window = MA1).mean()
-            add[f'SMA_{MA2}'] = add['Close'].rolling(window = MA2).mean()
-            add[f'SMA_{MA3}'] = add['Close'].rolling(window = MA3).mean()
-            add[f'SMA_{MA4}'] = add['Close'].rolling(window = MA4).mean()
-            add[f'SMA_{MA5}'] = add['Close'].rolling(window = MA5).mean()
-            add[f'SMA_{MA6}'] = add['Close'].rolling(window = MA6).mean()
-            #Standard deviation
-            add[f'SD_{MA1}'] = add['Close'].rolling(window = MA1).std()
-            add[f'SD_{MA2}'] = add['Close'].rolling(window = MA2).std()
-            add[f'SD_{MA3}'] = add['Close'].rolling(window = MA3).std()
-            add[f'SD_{MA4}'] = add['Close'].rolling(window = MA4).std()
-            add[f'SD_{MA5}'] = add['Close'].rolling(window = MA5).std()
-            add[f'SD_{MA6}'] = add['Close'].rolling(window = MA6).std()
-            #Skewness
-            add[f'Ske_{MA1}'] = add['Close'].rolling(window = MA1).skew()
-            add[f'Ske_{MA2}'] = add['Close'].rolling(window = MA2).skew()
-            add[f'Ske_{MA3}'] = add['Close'].rolling(window = MA3).skew()
-            add[f'Ske_{MA4}'] = add['Close'].rolling(window = MA4).skew()
-            add[f'Ske_{MA5}'] = add['Close'].rolling(window = MA5).skew()
-            add[f'Ske_{MA6}'] = add['Close'].rolling(window = MA6).skew()
-            #Kurtosis
-            add[f'Kur_{MA1}'] = add['Close'].rolling(window = MA1).kurt()
-            add[f'Kur_{MA2}'] = add['Close'].rolling(window = MA2).kurt()
-            add[f'Kur_{MA3}'] = add['Close'].rolling(window = MA3).kurt()
-            add[f'Kur_{MA4}'] = add['Close'].rolling(window = MA4).kurt()
-            add[f'Kur_{MA5}'] = add['Close'].rolling(window = MA5).kurt()
-            add[f'Kur_{MA6}'] = add['Close'].rolling(window = MA6).kurt()
-            #Drop missing data
-            add.dropna(inplace = True)
-            df = pd.concat([df,add])
-            Functions.SetLineGraph(self, df,company)
+        for company in companies:
+            df = pd.read_csv(f"./data/prepaired/{company}pre.csv", encoding = "utf-8")
+            add = vnstock.stock_historical_data(symbol = company, start_date = start, end_date = end)
+            if (add['Open'][0] - add['Close'][0]) != df['O-C'][len(df) -1]:
+                #Candlesticks
+                add['H-L'] = add['High'] - add['Low']
+                
+                add['O-C'] = df['Open'] - df['Close']
+                #Labels
+                MA1 = 5
+                MA2 = 10
+                MA3 = 15
+                MA4 = 20
+                MA5 = 25
+                MA6 = 30
+                #Median
+                add[f'ME_{MA1}'] = add['Close'].rolling(window = MA1).median()
+                add[f'ME_{MA2}'] = add['Close'].rolling(window = MA2).median()
+                add[f'ME_{MA3}'] = add['Close'].rolling(window = MA3).median()
+                add[f'ME_{MA4}'] = add['Close'].rolling(window = MA4).median()
+                add[f'ME_{MA5}'] = add['Close'].rolling(window = MA5).median()
+                add[f'ME_{MA6}'] = add['Close'].rolling(window = MA6).median()
+                #Rank 
+                add[f'RANK_{MA1}'] = add['Close'].rolling(window = MA1).rank()
+                add[f'RANK_{MA2}'] = add['Close'].rolling(window = MA2).rank()
+                add[f'RANK_{MA3}'] = add['Close'].rolling(window = MA3).rank()
+                add[f'RANK_{MA4}'] = add['Close'].rolling(window = MA4).rank()
+                add[f'RANK_{MA5}'] = add['Close'].rolling(window = MA5).rank()
+                add[f'RANK_{MA6}'] = add['Close'].rolling(window = MA6).rank()
+                #Var
+                add[f'VAR_{MA1}'] = add['Close'].rolling(window = MA1).var()
+                add[f'VAR_{MA2}'] = add['Close'].rolling(window = MA2).var()
+                add[f'VAR_{MA3}'] = add['Close'].rolling(window = MA3).var()
+                add[f'VAR_{MA4}'] = add['Close'].rolling(window = MA4).var()
+                add[f'VAR_{MA5}'] = add['Close'].rolling(window = MA5).var()
+                add[f'VAR_{MA6}'] = add['Close'].rolling(window = MA6).var()
+                #Simple moving average
+                add[f'SMA_{MA1}'] = add['Close'].rolling(window = MA1).mean()
+                add[f'SMA_{MA2}'] = add['Close'].rolling(window = MA2).mean()
+                add[f'SMA_{MA3}'] = add['Close'].rolling(window = MA3).mean()
+                add[f'SMA_{MA4}'] = add['Close'].rolling(window = MA4).mean()
+                add[f'SMA_{MA5}'] = add['Close'].rolling(window = MA5).mean()
+                add[f'SMA_{MA6}'] = add['Close'].rolling(window = MA6).mean()
+                #Standard deviation
+                add[f'SD_{MA1}'] = add['Close'].rolling(window = MA1).std()
+                add[f'SD_{MA2}'] = add['Close'].rolling(window = MA2).std()
+                add[f'SD_{MA3}'] = add['Close'].rolling(window = MA3).std()
+                add[f'SD_{MA4}'] = add['Close'].rolling(window = MA4).std()
+                add[f'SD_{MA5}'] = add['Close'].rolling(window = MA5).std()
+                add[f'SD_{MA6}'] = add['Close'].rolling(window = MA6).std()
+                #Skewness
+                add[f'Ske_{MA1}'] = add['Close'].rolling(window = MA1).skew()
+                add[f'Ske_{MA2}'] = add['Close'].rolling(window = MA2).skew()
+                add[f'Ske_{MA3}'] = add['Close'].rolling(window = MA3).skew()
+                add[f'Ske_{MA4}'] = add['Close'].rolling(window = MA4).skew()
+                add[f'Ske_{MA5}'] = add['Close'].rolling(window = MA5).skew()
+                add[f'Ske_{MA6}'] = add['Close'].rolling(window = MA6).skew()
+                #Kurtosis
+                add[f'Kur_{MA1}'] = add['Close'].rolling(window = MA1).kurt()
+                add[f'Kur_{MA2}'] = add['Close'].rolling(window = MA2).kurt()
+                add[f'Kur_{MA3}'] = add['Close'].rolling(window = MA3).kurt()
+                add[f'Kur_{MA4}'] = add['Close'].rolling(window = MA4).kurt()
+                add[f'Kur_{MA5}'] = add['Close'].rolling(window = MA5).kurt()
+                add[f'Kur_{MA6}'] = add['Close'].rolling(window = MA6).kurt()
+                #Drop missing data
+                add.dropna(inplace = True)
+                df = pd.concat([df,add])
+                Functions.SetLineGraph(self, df,company)
+
     
     def CrawlCompanies():
         companies = ["FPT", "CTG", "LCG"]

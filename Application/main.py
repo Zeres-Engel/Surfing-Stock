@@ -26,9 +26,7 @@ class MainWindow(QMainWindow):
         self.timer.start()
         
     def real_time_function(self):
-        Functions.Crawlagain(self, 'FPT')
-        Functions.Crawlagain(self, 'CTG')
-        Functions.Crawlagain(self, 'LCG')
+        Functions.Crawlagain(self)
 
     def btn_clicked(self):
         btn = SetupMainWindow.setup_btns(self)
