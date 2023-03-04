@@ -75,11 +75,17 @@ By extracting and using these features, we can better capture the patterns and t
 The LSTM model is used to predict the stock price using the 31 extracted feature columns.
 
 ```python
-model = Sequential()
-cells = 248
-model.add(LSTM(units = cells, activation='tanh', recurrent_activation='sigmoid', input_shape = (x_train.shape[1], x_train.shape[2])))
-model.add(Dropout(0.1))
-model.add(Dense(units = len(cols_y))) 
+  model = Sequential()
+  cells = 270
+  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid', input_shape = (x_train.shape[1], x_train.shape[2])))
+  model.add(Dropout(0.1))
+  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
+  model.add(Dropout(0.1))
+  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
+  model.add(Dropout(0.1))
+  model.add(LSTM(units = cells))
+  model.add(Dropout(0.1))
+  model.add(Dense(units = len(cols_y)))  
 ```
 
 ### Optimizer (Adam)
@@ -87,8 +93,8 @@ model.add(Dense(units = len(cols_y)))
 Using the Adam optimizer for stock price prediction models has several benefits, including stability, adaptiveness, and efficiency. It helps the model converge faster, achieve better results, and optimize more efficiently than other optimizers such as SGD or Adagrad.
 
 ```python
-model.compile(optimizer = 'adam', loss = 'mean_squared_error', metrics = ['accuracy']) 
-history = model.fit(x_train, y_train, epochs = 10, batch_size = 2, use_multiprocessing = True, validation_split=0.2, shuffle=True)
+model.compile(optimizer = Adam(learning_rate = 0.0001), loss = 'mean_squared_error', metrics = ['accuracy']) 
+history = model.fit(x_train, y_train, epochs= 10, batch_size= 1, use_multiprocessing= True, validation_split= 0.2, shuffle= True)
 ```
 
 ## Deploying the Product
