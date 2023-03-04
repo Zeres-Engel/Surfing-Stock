@@ -1,6 +1,7 @@
 import os
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtCore import QTimer
 from gui.core.functions import Functions
 from gui.core.json_settings import Settings
 from gui.uis.windows.main_window import *
@@ -19,6 +20,15 @@ class MainWindow(QMainWindow):
         self.hide_grips = True
         SetupMainWindow.setup_gui(self)
         self.show()
+        self.timer = QTimer(self)
+        self.timer.setInterval(60000)
+        self.timer.timeout.connect(self.real_time_function) 
+        self.timer.start()
+        
+    def real_time_function(self):
+        Functions.Crawlagain(self, 'FPT')
+        Functions.Crawlagain(self, 'CTG')
+        Functions.Crawlagain(self, 'LCG')
 
     def btn_clicked(self):
         btn = SetupMainWindow.setup_btns(self)
@@ -26,17 +36,14 @@ class MainWindow(QMainWindow):
         if btn.objectName() == "btn_FPT":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_1)
-            Functions.Crawlagain(self, 'FPT')
             
         if btn.objectName() == "btn_CTG":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_2)
-            Functions.Crawlagain(self, 'CTG')
             
         if btn.objectName() == "btn_LCG":
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page_3)
-            Functions.Crawlagain(self, 'LCG')
 
     def btn_released(self):
         btn = SetupMainWindow.setup_btns(self)
