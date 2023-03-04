@@ -9,7 +9,6 @@ from gui.uis.windows.main_window.functions_main_window import *
 
 os.environ["QT_FONT_DPI"] = "96"
 
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
