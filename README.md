@@ -83,7 +83,7 @@ To build a model, the process of analyzing stationary is an important step to en
 
   ### Optimizer (Adam)
 
-    Using the Adam optimizer for stock price prediction models has several benefits, including stability, adaptiveness, and efficiency. It helps the model converge faster, achieve better results, and optimize more efficiently than other optimizers such as SGD or Adagrad.
+  Using the Adam optimizer for stock price prediction models has several benefits, including stability, adaptiveness, and efficiency. It helps the model converge faster, achieve better results, and optimize more efficiently than other optimizers such as SGD or Adagrad.
 
   ```python
   model = CreateModel(387)
