@@ -36,56 +36,27 @@ The app is designed to automatically scrape stock data using the VNStock API and
 
 ## Building the Model
 
-In addition to extracting the 31 feature columns, the data is also split into training and testing sets. The training set contains data from the first 80% of the time series, while the testing set contains the remaining 20%. This allows the model to learn patterns and trends from past stock prices and test its ability to make accurate predictions on future stock prices.
-
-After building and training the LSTM model, it is saved to disk as a .h5 file. This allows for easy and quick access to the model for future use in the Surfing Stock app.
-
-```python
-from keras.models import save_model
-
-save_model(model, f"model/{company}.h5", include_optimizer = True)
-```
-
-### Data Understanding
-
-The data is collected using the VNStock API, and the following data variables are used for predicting the stock price:
-
-- Date
-- Open
-- High
-- Low
-- Close
-- Volume
-
-### Data Preprocessing
-
-Data preprocessing is performed to extract 31 feature columns from the raw data. These features are then used to build the LSTM model.
-
-- Volume
-- Candlestick patterns
-- Median prices
-- Simple moving averages
-- Skewness
-- Kurtosis
--Technical indicators (RSI, MACD, etc.)
-By extracting and using these features, we can better capture the patterns and trends in the stock price data and improve the accuracy of our predictions.
+To build a model, the process of analyzing stationary is an important step to ensure that the input data of the model is stable over time. Then, identifying the cycle with the highest energy impact will help you find patterns and trends in the data to improve the accuracy of the model.
 
 ### Layers (LSTM)
 
 The LSTM model is used to predict the stock price using the 31 extracted feature columns.
 
 ```python
-  model = Sequential()
-  cells = 270
-  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid', input_shape = (x_train.shape[1], x_train.shape[2])))
-  model.add(Dropout(0.1))
-  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
-  model.add(Dropout(0.1))
-  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
-  model.add(Dropout(0.1))
-  model.add(LSTM(units = cells))
-  model.add(Dropout(0.1))
-  model.add(Dense(units = len(cols_y)))  
+model = Sequential()
+model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid', input_shape = (X_train.shape[1], X_train.shape[2])))
+model.add(Dropout(0.1))
+model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
+model.add(Dropout(0.1))
+model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
+model.add(Dropout(0.1))
+model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
+model.add(Dropout(0.1))
+model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
+model.add(Dropout(0.1))
+model.add(LSTM(units = cells))
+model.add(Dropout(0.1))
+model.add(Dense(units = len(cols_y)))         
 ```
 
 ### Optimizer (Adam)
@@ -93,8 +64,10 @@ The LSTM model is used to predict the stock price using the 31 extracted feature
 Using the Adam optimizer for stock price prediction models has several benefits, including stability, adaptiveness, and efficiency. It helps the model converge faster, achieve better results, and optimize more efficiently than other optimizers such as SGD or Adagrad.
 
 ```python
-model.compile(optimizer = Adam(learning_rate = 0.0001), loss = 'mean_squared_error', metrics = ['accuracy']) 
-history = model.fit(x_train, y_train, epochs= 10, batch_size= 1, use_multiprocessing= True, validation_split= 0.2, shuffle= True)
+model = CreateModel(387)
+
+model.compile(optimizer = Adam(learning_rate = 0.00001), loss = 'mean_squared_error', metrics = ['accuracy'])
+history = model.fit(X_train, y_train, epochs= 1, batch_size= 1, use_multiprocessing= True, validation_split= 0.2, shuffle= True)
 ```
 
 ## Deploying the Product
