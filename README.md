@@ -21,7 +21,7 @@ With its user-friendly interface, Surfing Stock is easy to use and provides user
 # Table of Content
 - [Overview](#overview)
 - [Building the Model](#building-the-model)
-    - [Data Understanding](#data-understanding)
+    - [Data Analysis](#data-analysis)
     - [Data Preprocessing](#data-preprocessing)
     - [Layers (LSTM)](#layers-lstm)
     - [Optimizer (Adam)](#optimizer-adam)
@@ -37,6 +37,28 @@ The app is designed to automatically scrape stock data using the VNStock API and
 ## Building the Model
 
 To build a model, the process of analyzing stationary is an important step to ensure that the input data of the model is stable over time. Then, identifying the cycle with the highest energy impact will help you find patterns and trends in the data to improve the accuracy of the model.
+
+### Data analysis
+
+To conduct stock analysis, we focus on analyzing the following three main components:
+  -Stationary time-series
+  -Seasonality
+  -Histogram
+
+### Data Preprocessing
+
+Based on the analysis of the main components we are interested in, we can build features using the following approaches:
+
+  1.Adding values based on the strongest energy cycles:
+    -Median
+    -Rank
+    -Variance
+    -Mean
+    -Standard Deviation
+    
+  2.Scaling the values using a normalization method such as StandardScaler to bring the data closer to a normal distribution.
+
+  3.Feature engineering the data by taking a rolling window of 7 days to predict the next day's value.
 
 ### Layers (LSTM)
 
