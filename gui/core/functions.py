@@ -198,7 +198,7 @@ class Functions:
         cols_y = ['Close']
         scaled_data_x = scaler_x.fit_transform(df[cols_x].values.reshape(-1, len(cols_x))) 
         scaled_data_y = scaler_y.fit_transform(df[cols_y].values.reshape(-1, len(cols_y)))
-        self.model = load_model(f"./model/{company}.h5")
+        self.model = load_model(f"./gui/models/{company}.h5")
         
         real_prices = df.loc[len(df)-7:, ['Close', 'Volume']]
         real_prices = np.array(real_prices)
