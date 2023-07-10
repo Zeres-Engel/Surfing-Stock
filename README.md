@@ -6,7 +6,7 @@
   </p>
 </div>
 
-Welcome to Surfing Stock, an application built using the QT library that utilizes a prediction model for stock prices based on an LSTM neural network. This app provides users with the ability to predict the stock prices for the following day using data from the seven previous days.
+Welcome to Surfing Stock, an application built using the QT library that utilizes a prediction model for stock prices based on an LSTM neural network. This app allows users to predict the stock prices for the following day using data from the seven previous days.
 
 With its user-friendly interface, Surfing Stock is easy to use and provides users with reliable and insightful predictions. By utilizing the power of deep learning, Surfing Stock can help users make informed decisions in their investment strategies.
 
@@ -36,7 +36,7 @@ The app is designed to automatically scrape stock data using the VNStock API and
 
 ## Building the Model
 
-To build a model, the process of analyzing stationary is an important step to ensure that the input data of the model is stable over time. Then, identifying the cycle with the highest energy impact will help you find patterns and trends in the data to improve the accuracy of the model.
+To build a model, the process of analyzing stationary is a crucial step to ensure that the input data of the model is stable over time. Then, identifying the cycle with the highest energy impact will help you find patterns and trends in the data to improve the accuracy of the model.
 
   ### Data analysis
 
@@ -49,14 +49,14 @@ To build a model, the process of analyzing stationary is an important step to en
 
   Based on the analysis of the main components we are interested in, we can build features using the following approaches:
 
-  1. Adding values based on the strongest energy cycles:
+  1. Adding values based on the most vital energy cycles:
     -Median
     -Rank
     -Variance
     -Mean
     -Standard Deviation
 
-  2. Scaling the values using a normalization method such as StandardScaler to bring the data closer to a normal distribution.
+  2. Scaling the values using a normalization method such as StandardScaler brings the data closer to a normal distribution.
 
   3. Feature engineering the data by taking a rolling window of 7 days to predict the next day's value.
 
@@ -94,9 +94,9 @@ To build a model, the process of analyzing stationary is an important step to en
 
 ## Deploying the Product
 
-To use the Surfing Stock app, users simply need to download and install the required libraries and run the main.py file or. The app will automatically scrape stock data and use the saved LSTM model to make predictions for the following day's stock price.
+To use the Surfing Stock app, users simply need to download and install the required libraries and run the main.py file. The app will automatically scrape stock data and use the saved LSTM model to make predictions for the following day's stock price.
 
-The predicted stock price is displayed on the app's user interface, along with a chart that shows the historical stock prices and the predicted stock price for the next day.
+The predicted stock price is displayed on the app's user interface, along with a chart showing the historical and expected stock prices for the next day.
 
 The app also includes a settings menu where users can adjust the time range of the historical stock data displayed on the chart, as well as the time range of the predicted stock price.
 
@@ -104,7 +104,7 @@ Overall, the Surfing Stock app provides a user-friendly and efficient way for us
 
   ### User Interface
 
-  The product has a user interface that displays the predicted stock price using a chart. The chart is designed to be easy to read and understand.
+  The product has a user interface displays the predicted stock price using a chart. The chart is designed to be easy to read and understand.
 
   Closing price chart:
 
@@ -125,7 +125,7 @@ Overall, the Surfing Stock app provides a user-friendly and efficient way for us
       ```
 
   2. Download the Models:
-    Download the models folder from the following [link](https://drive.google.com/drive/folders/1DFZ7nF60rF4tt1urFSbvffG-iWUnuxTW?usp=sharing) and move to './gui/'
+    Download the models folder from the following [link](https://drive.google.com/drive/folders/1DFZ7nF60rF4tt1urFSbvffG-iWUnuxTW?usp=sharing) and move to **./gui/**
 
   3. Run the Application:
     Once the dependencies are installed, you can run the application using the following command:
