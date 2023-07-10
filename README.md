@@ -6,7 +6,7 @@
   </p>
 </div>
 
-Welcome to Surfing Stock, an application built using the [QT](https://en.wikipedia.org/wiki/Qt_(software)) library that utilizes a prediction model for stock prices based on an [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory) neural network. This app provides users with the ability to predict the stock prices for the following day using data from the seven previous days.
+Welcome to Surfing Stock, an application built using the QT library that utilizes a prediction model for stock prices based on an LSTM neural network. This app provides users with the ability to predict the stock prices for the following day using data from the seven previous days.
 
 With its user-friendly interface, Surfing Stock is easy to use and provides users with reliable and insightful predictions. By utilizing the power of deep learning, Surfing Stock can help users make informed decisions in their investment strategies.
 
