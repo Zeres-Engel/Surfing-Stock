@@ -116,4 +116,19 @@ Overall, the Surfing Stock app provides a user-friendly and efficient way for us
 
   ### Configuration
 
-  The Surfing Stock app has a user-friendly interface that displays predicted stock prices using a chart. To run this code, programers need to install the required libraries, which are listed in the requirements.txt file.
+  To run the Surfing Stock application, follow the steps below:
+
+  1. Install Dependencies:
+    Make sure you have the required dependencies installed in your environment. You can install them by running the following command:
+      ```shell
+      pip install -r requirements.txt
+      ```
+
+  2. Download the Models:
+    Download the models folder from the following link: [Google Drive](https://drive.google.com/drive/folders/1-4jXZzwsluhL9SlVG3yAZuli_pBdNAll?usp=sharing).
+
+  3. Run the Application:
+    Once the dependencies are installed, you can run the application using the following command:
+      ```shell
+      python main.py
+      ```
