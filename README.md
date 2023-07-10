@@ -49,16 +49,16 @@ To build a model, the process of analyzing stationary is an important step to en
 
   Based on the analysis of the main components we are interested in, we can build features using the following approaches:
 
-    1. Adding values based on the strongest energy cycles:
-      -Median
-      -Rank
-      -Variance
-      -Mean
-      -Standard Deviation
+  1. Adding values based on the strongest energy cycles:
+    -Median
+    -Rank
+    -Variance
+    -Mean
+    -Standard Deviation
 
-    2. Scaling the values using a normalization method such as StandardScaler to bring the data closer to a normal distribution.
+  2. Scaling the values using a normalization method such as StandardScaler to bring the data closer to a normal distribution.
 
-    3. Feature engineering the data by taking a rolling window of 7 days to predict the next day's value.
+  3. Feature engineering the data by taking a rolling window of 7 days to predict the next day's value.
 
   ### Layers (LSTM)
 
@@ -94,7 +94,7 @@ To build a model, the process of analyzing stationary is an important step to en
 
 ## Deploying the Product
 
-To use the Surfing Stock app, users simply need to download and install the required libraries and run the main.py file or         https://drive.google.com/file/d/1OmZuhPzRKWvL9k_hTiSArxFXpCDq9sx- . The app will automatically scrape stock data and use the saved LSTM model to make predictions for the following day's stock price.
+To use the Surfing Stock app, users simply need to download and install the required libraries and run the main.py file or. The app will automatically scrape stock data and use the saved LSTM model to make predictions for the following day's stock price.
 
 The predicted stock price is displayed on the app's user interface, along with a chart that shows the historical stock prices and the predicted stock price for the next day.
 
