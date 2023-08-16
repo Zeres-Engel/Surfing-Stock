@@ -119,7 +119,7 @@ Overall, the Surfing Stock app provides a user-friendly and efficient way for us
       ```
 
   2. Download the Models:
-    Download the models folder from the following [link](https://drive.google.com/drive/folders/1DFZ7nF60rF4tt1urFSbvffG-iWUnuxTW?usp=sharing) and move to **./gui/**
+    Download the models folder from the following [link](https://drive.google.com/drive/folders/1-4jXZzwsluhL9SlVG3yAZuli_pBdNAll?usp=sharing) and move to **./gui/**
 
   3. Run the Application:
     Once the dependencies are installed, you can run the application using the following command:
