@@ -66,19 +66,13 @@ To build a model, the process of analyzing stationary is a crucial step to ensur
 
   ```python
   model = Sequential()
-  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid', input_shape = (X_train.shape[1], X_train.shape[2])))
-  model.add(Dropout(0.1))
-  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
-  model.add(Dropout(0.1))
-  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
-  model.add(Dropout(0.1))
-  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
+  model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid', input_shape = (7, 45)))
   model.add(Dropout(0.1))
   model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
   model.add(Dropout(0.1))
   model.add(LSTM(units = cells))
   model.add(Dropout(0.1))
-  model.add(Dense(units = len(cols_y)))         
+  model.add(Dense(units = len(cols_y)))
   ```
 
   ### Optimizer (Adam)
@@ -121,7 +115,7 @@ Overall, the Surfing Stock app provides a user-friendly and efficient way for us
   1. Install Dependencies:
     Make sure you have the required dependencies installed in your environment. You can install them by running the following command:
       ```shell
-      pip install -r requirements.txt
+      conda env export > environment.yml
       ```
 
   2. Download the Models:

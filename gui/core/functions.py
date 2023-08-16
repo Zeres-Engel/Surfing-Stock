@@ -16,15 +16,14 @@ class Functions:
     def __init__(self):
         model = Sequential()
         cells = 270
+        model = Sequential()
         model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid', input_shape = (7, 45)))
-        model.add(Dropout(0.1))
-        model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
         model.add(Dropout(0.1))
         model.add(LSTM(units = cells, return_sequences=True, activation='tanh', recurrent_activation='sigmoid'))
         model.add(Dropout(0.1))
         model.add(LSTM(units = cells))
         model.add(Dropout(0.1))
-        model.add(Dense(units = 1)) 
+        model.add(Dense(units = len(cols_y))) 
         self.model = model
         
     def set_svg_icon(icon_name):
